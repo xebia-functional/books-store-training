@@ -12,12 +12,12 @@ public class libro {
     public libro() {
     }
 
-    public libro(String titulo, String autor, String usuario, boolean isponibilidad, int fecha) {
+    public libro(String titulo, String autor) {
         this.titulo = titulo;
         this.autor = autor;
-        this.usuario = usuario;
-        this.isponibilidad = isponibilidad;
-        this.fecha = fecha;
+        this.usuario = "";
+        this.disponibilidad = true;
+        this.fecha = 0;
     }
 
     @Override

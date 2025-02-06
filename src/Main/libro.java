@@ -67,7 +67,7 @@ public class libro {
         this.usuario = usuario;
     }
 
-    public boolean isIsponibilidad() {
+    public boolean isDisponibilidad() {
         return isponibilidad;
     }
 

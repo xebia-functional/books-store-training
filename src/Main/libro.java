@@ -1,5 +1,6 @@
 package Main;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class libro {
@@ -7,7 +8,7 @@ public class libro {
     private String autor;
     private String usuario;
     private boolean disponibilidad;
-    private int fecha;
+    private LocalDate fecha;
 
     public libro() {
     }
@@ -17,7 +18,6 @@ public class libro {
         this.autor = autor;
         this.usuario = "";
         this.disponibilidad = true;
-        this.fecha = 0;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class libro {
                 "titulo='" + titulo + '\'' +
                 ", autor='" + autor + '\'' +
                 ", usuario='" + usuario + '\'' +
-                ", isponibilidad=" + isponibilidad +
+                ", disponibilidad=" + disponibilidad+
                 ", fecha=" + fecha +
                 '}';
     }
@@ -35,12 +35,12 @@ public class libro {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         libro libro = (libro) o;
-        return isIsponibilidad() == libro.isIsponibilidad() && getFecha() == libro.getFecha() && Objects.equals(getTitulo(), libro.getTitulo()) && Objects.equals(getAutor(), libro.getAutor()) && Objects.equals(getUsuario(), libro.getUsuario());
+        return isDisponibilidad() == libro.isDisponibilidad() && getFecha() == libro.getFecha() && Objects.equals(getTitulo(), libro.getTitulo()) && Objects.equals(getAutor(), libro.getAutor()) && Objects.equals(getUsuario(), libro.getUsuario());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitulo(), getAutor(), getUsuario(), isIsponibilidad(), getFecha());
+        return Objects.hash(getTitulo(), getAutor(), getUsuario(), isDisponibilidad(), getFecha());
     }
 
     public String getTitulo() {
@@ -75,11 +75,11 @@ public class libro {
         this.disponibilidad = disponibilidad;
     }
 
-    public int getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(int fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 }

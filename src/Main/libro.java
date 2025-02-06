@@ -68,7 +68,7 @@ public class libro {
     }
 
     public boolean isDisponibilidad() {
-        return isponibilidad;
+        return disponibilidad;
     }
 
     public void setDisponibilidad(boolean disponibilidad) {

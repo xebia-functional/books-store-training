@@ -71,8 +71,8 @@ public class libro {
         return isponibilidad;
     }
 
-    public void setIsponibilidad(boolean isponibilidad) {
-        this.isponibilidad = isponibilidad;
+    public void setDisponibilidad(boolean disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
     public int getFecha() {

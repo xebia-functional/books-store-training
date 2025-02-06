@@ -6,7 +6,7 @@ public class libro {
     private String titulo;
     private String autor;
     private String usuario;
-    private boolean isponibilidad;
+    private boolean disponibilidad;
     private int fecha;
 
     public libro() {

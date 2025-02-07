@@ -1,8 +1,9 @@
 plugins {
     id("java")
+    alias(libs.plugins.spotless)
 }
 
-group = "io.cortex"
+group = "com.xebia"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -10,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform(libs.junit.jupiter.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 

@@ -40,7 +40,7 @@ public class book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTittle(), getAuthor(), getUser(), isAvailability(), getDate());
+        return Objects.hash(getTitle(), getAuthor(), getUser(), isAvailable(), getDate());
     }
 
     public String getTittle() {

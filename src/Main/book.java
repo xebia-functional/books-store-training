@@ -23,10 +23,10 @@ public class book {
     @Override
     public String toString() {
         return "book{" +
-                "tittle='" + tittle + '\'' +
+                "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", user='" + user + '\'' +
-                ", availability=" + availability +
+                ", available=" + available +
                 ", date=" + date +
                 '}';
     }

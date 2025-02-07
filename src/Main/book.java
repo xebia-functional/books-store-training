@@ -35,7 +35,7 @@ public class book {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         book book = (book) o;
-        return isAvailability() == book.isAvailability() && getDate() == book.getDate() && Objects.equals(getTittle(), book.getTittle()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getUser(), book.getUser());
+        return isAvailable() == book.isAvailable() && getDate() == book.getDate() && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getUser(), book.getUser());
     }
 
     @Override

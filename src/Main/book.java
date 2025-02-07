@@ -13,11 +13,11 @@ public class book {
     public book() {
     }
 
-    public book(String titulo, String autor) {
-        this.tittle = titulo;
-        this.author = autor;
+    public book(String title, String author) {
+        this.title = title;
+        this.author = author;
         this.user = "";
-        this.availability = true;
+        this.available = true;
     }
 
     @Override

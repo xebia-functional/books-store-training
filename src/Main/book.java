@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class book {
-    private String tittle;
+    private String title;
     private String author;
     private String user;
     private boolean availability;

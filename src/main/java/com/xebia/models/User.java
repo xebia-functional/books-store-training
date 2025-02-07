@@ -1,4 +1,4 @@
-package Main;
+package com.xebia.models;
 
 import java.util.Objects;
 

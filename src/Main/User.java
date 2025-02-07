@@ -2,16 +2,16 @@ package Main;
 
 import java.util.Objects;
 
-public class user {
+public class User {
 
     private String name;
     private int id;
 
 
-    public user() {
+    public User() {
     }
 
-    public user(String name, int id) {
+    public User(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -43,7 +43,7 @@ public class user {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        user user = (user) o;
+        User user = (User) o;
         return id == user.id && Objects.equals(name, user.name);
     }
 

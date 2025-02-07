@@ -3,17 +3,17 @@ package Main;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class book {
+public class Book {
     private String title;
     private String author;
     private String user;
     private boolean available;
     private LocalDate date;
 
-    public book() {
+    public Book() {
     }
 
-    public book(String title, String author) {
+    public Book(String title, String author) {
         this.title = title;
         this.author = author;
         this.user = "";
@@ -22,7 +22,7 @@ public class book {
 
     @Override
     public String toString() {
-        return "book{" +
+        return "Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", user='" + user + '\'' +
@@ -34,7 +34,7 @@ public class book {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        book book = (book) o;
+        Book book = (Book) o;
         return isAvailable() == book.isAvailable() && getDate() == book.getDate() && Objects.equals(getTitle(), book.getTitle()) && Objects.equals(getAuthor(), book.getAuthor()) && Objects.equals(getUser(), book.getUser());
     }
 

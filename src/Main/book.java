@@ -43,8 +43,8 @@ public class book {
         return Objects.hash(getTitle(), getAuthor(), getUser(), isAvailable(), getDate());
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
     public void setTittle(String tittle) {

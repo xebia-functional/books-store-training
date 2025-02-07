@@ -7,7 +7,7 @@ public class book {
     private String title;
     private String author;
     private String user;
-    private boolean availability;
+    private boolean available;
     private LocalDate date;
 
     public book() {

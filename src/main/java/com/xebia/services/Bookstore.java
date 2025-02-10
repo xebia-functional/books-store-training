@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Bookstore {
+  private final Scanner sc = new Scanner(System.in);
 
   private List<Book> books;
   private List<User> users;
@@ -75,5 +76,70 @@ public class Bookstore {
   @Override
   public int hashCode() {
     return Objects.hash(books, users, loans, loanDate);
+  }
+
+  public boolean addBook() {
+    System.out.println("Please enter the book's title");
+    String title = sc.nextLine();
+    System.out.println("Please enter the book's author");
+    String author = sc.nextLine();
+    Book newBook = new Book(title, author);
+    for (Book b : books) {
+      if (newBook.equals(b)) {
+        System.out.println("There's already a book registered under the same parameters ");
+        return false;
+      }
+    }
+    books.add(newBook);
+    System.out.println("The book has been registered successfully");
+    return true;
+  }
+
+  public boolean removeBook() {
+    System.out.println("Please enter the book's title");
+    String title = sc.nextLine();
+    System.out.println("Please enter the book's author");
+    String author = sc.nextLine();
+    Book newBook = new Book(title, author);
+    for (Book b : books) {
+      if (newBook.equals(b)) {
+
+        books.remove(newBook);
+        System.out.println("The book has been removed successfully");
+        return true;
+      }
+    }
+    System.out.println("There's no existing book related to those parameters ");
+    return false;
+  }
+
+  public boolean searchBookTitle() {
+    System.out.println("Please enter the book's title");
+    String title = sc.nextLine();
+    for (Book b : books) {
+      if (b.getTitle().equalsIgnoreCase(title)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean searchBookAuthor() {
+    System.out.println("Please enter the book's author");
+    String author = sc.nextLine();
+    for (Book b : books) {
+      if (b.getAuthor().equalsIgnoreCase(author)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public void listAvailable() {
+    for (Book b : books) {
+      if (b.isAvailable()) {
+        System.out.println(b.toString());
+      }
+    }
   }
 }

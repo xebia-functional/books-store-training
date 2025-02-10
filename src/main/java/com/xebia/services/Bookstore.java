@@ -136,6 +136,7 @@ public class Bookstore {
   }
 
   public void listAvailable() {
+  System.out.println("-----Available books-----");
     for (Book b : books) {
       if (b.isAvailable()) {
         System.out.println(b.toString());

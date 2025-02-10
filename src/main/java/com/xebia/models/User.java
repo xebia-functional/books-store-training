@@ -4,51 +4,46 @@ import java.util.Objects;
 
 public class User {
 
-    private String name;
-    private int id;
+  private String name;
+  private int id;
 
+  public User() {}
 
-    public User() {
-    }
+  public User(String name, int id) {
+    this.name = name;
+    this.id = id;
+  }
 
-    public User(String name, int id) {
-        this.name = name;
-        this.id = id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  @Override
+  public String toString() {
+    return "user{" + "name='" + name + '\'' + ", id=" + id + '}';
+  }
 
-    @Override
-    public String toString() {
-        return "user{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                '}';
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return id == user.id && Objects.equals(name, user.name);
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, id);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, id);
+  }
 }

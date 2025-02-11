@@ -151,4 +151,48 @@ public class Bookstore {
       logger.warning("No books are available.");
     }
   }
+
+  // User methods
+
+  public boolean addUser() {
+    logger.info("Please, enter the user's name: ");
+    String name = sc.nextLine();
+    logger.info("Please, enter the user's id: ");
+    int id = Integer.parseInt(sc.nextLine());
+    User newUser = new User(name, id);
+
+    for (User u : users) {
+      if (u.equals(newUser)) {
+        logger.warning("The user already exists.");
+        return false;
+      }
+    }
+    this.users.add(newUser);
+    return true;
+  }
+
+  public boolean removeUser() {
+    logger.info("Please, enter the user's name: ");
+    String name = sc.nextLine();
+    logger.info("Please, enter the user's id: ");
+    int id = Integer.parseInt(sc.nextLine());
+    User newUser = new User(name, id);
+
+    for (User u : users) {
+      if (u.equals(newUser)) {
+        users.remove(newUser);
+        logger.info("The user has been removed successfully.");
+        return true;
+      }
+    }
+    logger.warning("User doesn't exists.");
+    return false;
+  }
+
+  public void listUsers() {
+    logger.info("-----User's list-----");
+    for (User u : users) {
+      logger.info(u.toString());
+    }
+  }
 }

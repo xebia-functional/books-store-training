@@ -79,68 +79,75 @@ public class Bookstore {
   }
 
   public boolean addBook() {
-    System.out.println("Please enter the book's title");
+    logger.info("Please enter the book's title");
     String title = sc.nextLine();
-    System.out.println("Please enter the book's author");
+    logger.info("Please enter the book's author");
     String author = sc.nextLine();
     Book newBook = new Book(title, author);
     for (Book b : books) {
       if (newBook.equals(b)) {
-        System.out.println("There's already a book registered under the same parameters ");
+        logger.warning("There's already a book registered under the same parameters ");
         return false;
       }
     }
     books.add(newBook);
-    System.out.println("The book has been registered successfully");
+    logger.info("The book has been registered successfully");
     return true;
   }
 
   public boolean removeBook() {
-    System.out.println("Please enter the book's title");
-    String title = sc.nextLine();
-    System.out.println("Please enter the book's author");
-    String author = sc.nextLine();
-    Book newBook = new Book(title, author);
-    for (Book b : books) {
-      if (newBook.equals(b)) {
-
-        books.remove(newBook);
-        System.out.println("The book has been removed successfully");
-        return true;
-      }
+        logger.info("Please enter the book's title");
+        String title = sc.nextLine();
+        logger.info("Please enter the book's author");
+        String author = sc.nextLine();
+        Book newBook = new Book(title, author);
+        for (Book b : books) {
+            if (newBook.equals(b)) {
+                books.remove(newBook);
+                logger.info("The book has been removed successfully");
+                return true;
+            }
+        }
+        logger.warning("There's no existing book related to those parameters");
+        return false;
     }
-    System.out.println("There's no existing book related to those parameters ");
-    return false;
-  }
 
-  public boolean searchBookTitle() {
-    System.out.println("Please enter the book's title");
-    String title = sc.nextLine();
-    for (Book b : books) {
-      if (b.getTitle().equalsIgnoreCase(title)) {
-        return true;
-      }
+    public boolean searchBookTitle() {
+        logger.info("Please enter the book's title");
+        String title = sc.nextLine();
+        for (Book b : books) {
+            if (b.getTitle().equalsIgnoreCase(title)) {
+                logger.info("Book found: " + b.getTitle());
+                return true;
+            }
+        }
+        logger.warning("Book with title '" + title + "' not found.");
+        return false;
     }
-    return false;
-  }
 
-  public boolean searchBookAuthor() {
-    System.out.println("Please enter the book's author");
-    String author = sc.nextLine();
-    for (Book b : books) {
-      if (b.getAuthor().equalsIgnoreCase(author)) {
-        return true;
-      }
+    public boolean searchBookAuthor() {
+        logger.info("Please enter the book's author");
+        String author = sc.nextLine();
+        for (Book b : books) {
+            if (b.getAuthor().equalsIgnoreCase(author)) {
+                logger.info("Book by author '" + author + "' found: " + b.getTitle());
+                return true;
+            }
+        }
+        logger.warning("No books found by author '" + author + "'.");
+        return false;
     }
-    return false;
-  }
 
-  public void listAvailable() {
-  System.out.println("-----Available books-----");
-    for (Book b : books) {
-      if (b.isAvailable()) {
-        System.out.println(b.toString());
-      }
+    public void listAvailable() {
+        boolean foundAvailable = false;
+        for (Book b : books) {
+            if (b.isAvailable()) {
+                logger.info("Available book: " + b.toString());
+                foundAvailable = true;
+            }
+        }
+        if (!foundAvailable) {
+            logger.warning("No books are available.");
+        }
     }
-  }
 }

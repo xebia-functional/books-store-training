@@ -79,6 +79,8 @@ public class Bookstore {
     return Objects.hash(books, users, loans, loanDate);
   }
 
+  // Book methods
+
   public boolean addBook() {
     logger.info("Please enter the book's title");
     String title = sc.nextLine();
@@ -113,12 +115,9 @@ public class Bookstore {
     return false;
   }
 
-  public boolean searchBookTitle() {
-    logger.info("Please enter the book's title");
-    String title = sc.nextLine();
+  public boolean searchBookTitle(String title) {
     for (Book b : books) {
       if (b.getTitle().equalsIgnoreCase(title)) {
-        logger.info("Book found: " + b.getTitle());
         return true;
       }
     }
@@ -126,12 +125,9 @@ public class Bookstore {
     return false;
   }
 
-  public boolean searchBookAuthor() {
-    logger.info("Please enter the book's author");
-    String author = sc.nextLine();
+  public boolean searchBookAuthor(String author) {
     for (Book b : books) {
       if (b.getAuthor().equalsIgnoreCase(author)) {
-        logger.info("Book by author '" + author + "' found: " + b.getTitle());
         return true;
       }
     }
@@ -189,10 +185,71 @@ public class Bookstore {
     return false;
   }
 
+  public boolean searchUser(String username) {
+    for (User u : users) {
+      if (u.getName().equalsIgnoreCase(username)) {
+        return true;
+      }
+    }
+    logger.warning("No user register under the name " + username);
+    return false;
+  }
+
   public void listUsers() {
     logger.info("-----User's list-----");
     for (User u : users) {
       logger.info(u.toString());
+    }
+  }
+
+  // Bookstore methods
+
+  public void requestBook() {
+    logger.info("Please, enter user's name: ");
+    String userName = sc.nextLine();
+    logger.info("Please, enter book's title: ");
+    String bookTitle = sc.nextLine();
+    if (searchBookTitle(bookTitle) && searchUser(userName)) {
+      loans.put(bookTitle, userName);
+      recordDate(bookTitle, LocalDate.now());
+      for (Book b : books) {
+        if (b.getTitle().equalsIgnoreCase(bookTitle)) {
+          b.setAvailable(false);
+          b.setUser(userName);
+        }
+      }
+    }
+  }
+
+  public void recordDate(String bookTitle, LocalDate date) {
+    for (Book b : books) {
+      if (b.getTitle().equalsIgnoreCase(bookTitle)) {
+        b.setDate(date);
+      }
+    }
+    loanDate.put(bookTitle, date);
+  }
+
+  public void returnBook() {
+    logger.info("Please, enter book's title: ");
+    String bookTitle = sc.nextLine();
+    loans.remove(bookTitle);
+    loanDate.remove(bookTitle);
+    for (Book b : books) {
+      if (b.getTitle().equalsIgnoreCase(bookTitle)) {
+        b.setAvailable(true);
+        b.setUser("");
+        b.setDate(null);
+      }
+    }
+  }
+
+  public void listBorrowed() {
+    for (Book b : books) {
+      logger.info("-----Borrowed books-----");
+      if (!b.isAvailable()) {
+        logger.info(b.toString());
+      }
     }
   }
 }

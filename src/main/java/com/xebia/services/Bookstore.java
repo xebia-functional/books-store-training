@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Bookstore {
   private final Scanner sc = new Scanner(System.in);
-
+private static final Logger logger = Logger.getLogger(BookManager.class.getName());
   private List<Book> books;
   private List<User> users;
   private Map<String, String> loans;

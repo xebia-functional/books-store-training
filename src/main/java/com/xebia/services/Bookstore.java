@@ -4,9 +4,11 @@ import com.xebia.models.Book;
 import com.xebia.models.User;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Bookstore {
-
+  private final Scanner sc = new Scanner(System.in);
+  private static final Logger logger = Logger.getLogger(Bookstore.class.getName());
   private List<Book> books;
   private List<User> users;
   private Map<String, String> loans;
@@ -75,5 +77,78 @@ public class Bookstore {
   @Override
   public int hashCode() {
     return Objects.hash(books, users, loans, loanDate);
+  }
+
+  public boolean addBook() {
+    logger.info("Please enter the book's title");
+    String title = sc.nextLine();
+    logger.info("Please enter the book's author");
+    String author = sc.nextLine();
+    Book newBook = new Book(title, author);
+    for (Book b : books) {
+      if (newBook.equals(b)) {
+        logger.warning("There's already a book registered under the same parameters ");
+        return false;
+      }
+    }
+    books.add(newBook);
+    logger.info("The book has been registered successfully");
+    return true;
+  }
+
+  public boolean removeBook() {
+    logger.info("Please enter the book's title");
+    String title = sc.nextLine();
+    logger.info("Please enter the book's author");
+    String author = sc.nextLine();
+    Book newBook = new Book(title, author);
+    for (Book b : books) {
+      if (newBook.equals(b)) {
+        books.remove(newBook);
+        logger.info("The book has been removed successfully");
+        return true;
+      }
+    }
+    logger.warning("There's no existing book related to those parameters");
+    return false;
+  }
+
+  public boolean searchBookTitle() {
+    logger.info("Please enter the book's title");
+    String title = sc.nextLine();
+    for (Book b : books) {
+      if (b.getTitle().equalsIgnoreCase(title)) {
+        logger.info("Book found: " + b.getTitle());
+        return true;
+      }
+    }
+    logger.warning("Book with title '" + title + "' not found.");
+    return false;
+  }
+
+  public boolean searchBookAuthor() {
+    logger.info("Please enter the book's author");
+    String author = sc.nextLine();
+    for (Book b : books) {
+      if (b.getAuthor().equalsIgnoreCase(author)) {
+        logger.info("Book by author '" + author + "' found: " + b.getTitle());
+        return true;
+      }
+    }
+    logger.warning("No books found by author '" + author + "'.");
+    return false;
+  }
+
+  public void listAvailable() {
+    boolean foundAvailable = false;
+    for (Book b : books) {
+      if (b.isAvailable()) {
+        logger.info("Available book: " + b.toString());
+        foundAvailable = true;
+      }
+    }
+    if (!foundAvailable) {
+      logger.warning("No books are available.");
+    }
   }
 }

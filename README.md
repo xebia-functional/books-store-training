@@ -54,3 +54,12 @@ You may need to add that repository explicitly in your build, if you haven't don
 
 ```groovy
 repositories { mavenCentral() }
+
+Then add the libraries in the usual way.
+
+```groovy
+// In Gradle Kotlin 
+dependencies {
+  testImplementation(platform(libs.junit.jupiter.bom))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+}

@@ -135,18 +135,7 @@ public class Bookstore {
     return false;
   }
 
-  public void listAvailable() {
-    boolean foundAvailable = false;
-    for (Book b : books) {
-      if (b.isAvailable()) {
-        logger.info("Available book: " + b.toString());
-        foundAvailable = true;
-      }
-    }
-    if (!foundAvailable) {
-      logger.warning("No books are available.");
-    }
-  }
+  public void listAvailable() {}
 
   // User methods
 
@@ -204,52 +193,11 @@ public class Bookstore {
 
   // Bookstore methods
 
-  public void requestBook() {
-    logger.info("Please, enter user's name: ");
-    String userName = sc.nextLine();
-    logger.info("Please, enter book's title: ");
-    String bookTitle = sc.nextLine();
-    if (searchBookTitle(bookTitle) && searchUser(userName)) {
-      loans.put(bookTitle, userName);
-      recordDate(bookTitle, LocalDate.now());
-      for (Book b : books) {
-        if (b.getTitle().equalsIgnoreCase(bookTitle)) {
-          b.setAvailable(false);
-          b.setUser(userName);
-        }
-      }
-    }
-  }
+  public void requestBook() {}
 
-  public void recordDate(String bookTitle, LocalDate date) {
-    for (Book b : books) {
-      if (b.getTitle().equalsIgnoreCase(bookTitle)) {
-        b.setDate(date);
-      }
-    }
-    loanDate.put(bookTitle, date);
-  }
+  public void recordDate(String bookTitle, LocalDate date) {}
 
-  public void returnBook() {
-    logger.info("Please, enter book's title: ");
-    String bookTitle = sc.nextLine();
-    loans.remove(bookTitle);
-    loanDate.remove(bookTitle);
-    for (Book b : books) {
-      if (b.getTitle().equalsIgnoreCase(bookTitle)) {
-        b.setAvailable(true);
-        b.setUser("");
-        b.setDate(null);
-      }
-    }
-  }
+  public void returnBook() {}
 
-  public void listBorrowed() {
-    for (Book b : books) {
-      logger.info("-----Borrowed books-----");
-      if (!b.isAvailable()) {
-        logger.info(b.toString());
-      }
-    }
-  }
+  public void listBorrowed() {}
 }

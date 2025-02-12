@@ -7,8 +7,8 @@ This project's purpose is to familiarise the interns with the use of version con
 This project vontains the following elements:
 
 Models:
--Book
--User
+- Book
+- User
 
 Service:
 -Bookstore

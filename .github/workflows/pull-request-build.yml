@@ -33,6 +33,9 @@ jobs:
       - name: Build
         run: ./gradlew build --full-stacktrace
 
+      - name: Test
+        run: ./gradlew test --full-stacktrace
+
       - name: Upload reports
         if: failure()
         uses: actions/upload-artifact@v4

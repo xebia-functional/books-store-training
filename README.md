@@ -45,4 +45,11 @@ Service:
 
 ## Run
 
-The project should run
+##Libraries
+Libraries are published in Maven Central:
+- The only library used so far is JUnit
+
+You may need to add that repository explicitly in your build, if you haven't done it before.
+
+```groovy
+repositories { mavenCentral() }

@@ -18,16 +18,8 @@ public class User {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public int getId() {
     return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   @Override
@@ -40,10 +32,5 @@ public class User {
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
     return id == user.id && Objects.equals(name, user.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, id);
   }
 }

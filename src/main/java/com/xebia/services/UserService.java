@@ -5,7 +5,7 @@ import java.util.*;
 
 public interface UserService {
   /**
-   * This method adds a ser to the User list
+   * This method adds a User to the User list
    *
    * @param newUser
    * @return boolean

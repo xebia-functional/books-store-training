@@ -13,7 +13,7 @@ public interface UserService {
   boolean addUser(User newUser);
 
   /**
-   * This method adds a ser to the User list
+   * This method adds an User to the User list
    *
    * @param remUser
    * @return boolean

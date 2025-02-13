@@ -4,19 +4,26 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book {
+
   private String title;
   private String author;
-  private String user;
-  private boolean available;
   private LocalDate date;
-
-  public Book() {}
 
   public Book(String title, String author) {
     this.title = title;
     this.author = author;
-    this.user = "";
-    this.available = true;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getAuthor() {
+    return author;
+  }
+
+  public LocalDate getDate() {
+    return date;
   }
 
   @Override
@@ -28,11 +35,6 @@ public class Book {
         + ", author='"
         + author
         + '\''
-        + ", user='"
-        + user
-        + '\''
-        + ", available="
-        + available
         + ", date="
         + date
         + '}';
@@ -42,55 +44,13 @@ public class Book {
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
     Book book = (Book) o;
-    return isAvailable() == book.isAvailable()
-        && getDate() == book.getDate()
-        && Objects.equals(getTitle(), book.getTitle())
-        && Objects.equals(getAuthor(), book.getAuthor())
-        && Objects.equals(getUser(), book.getUser());
+    return Objects.equals(title, book.title)
+        && Objects.equals(author, book.author)
+        && Objects.equals(date, book.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getTitle(), getAuthor(), getUser(), isAvailable(), getDate());
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-  public String getUser() {
-    return user;
-  }
-
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-  public boolean isAvailable() {
-    return available;
-  }
-
-  public void setAvailable(boolean available) {
-    this.available = available;
-  }
-
-  public LocalDate getDate() {
-    return date;
-  }
-
-  public void setDate(LocalDate date) {
-    this.date = date;
+    return Objects.hash(title, author, date);
   }
 }

@@ -1,7 +1,7 @@
 package com.xebia.services;
 
 import com.xebia.models.User;
-
+import java.util.*;
 public interface UserService {
 
   boolean addUser(User newUser);

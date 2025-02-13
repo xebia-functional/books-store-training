@@ -10,5 +10,5 @@ public interface UserService {
 
   Optional<User> searchUser(String Username);
 
-  void listUsers();
+  List<User> listUsers();
 }

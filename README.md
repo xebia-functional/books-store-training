@@ -5,7 +5,7 @@
 This project's purpose is to familiarise the interns with the use of version control tools (GitHub) and the methodology behind managing and working on a project.
 The project has been developed using Java.
 
-This project vontains the following elements:
+This project contains the following elements:
 
 Models:
 - Book

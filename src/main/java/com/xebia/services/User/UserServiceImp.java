@@ -17,12 +17,10 @@ public class UserServiceImp implements UserService {
 
   @Override
   public boolean addUser(User newUser) {
-    for (User u : users) {
       if (users.contains(newUser)) {
         logger.warning("The user already exists.");
         return false;
       }
-    }
     this.users.add(newUser);
     return true;
   }

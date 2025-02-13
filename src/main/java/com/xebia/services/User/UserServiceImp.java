@@ -27,13 +27,11 @@ public class UserServiceImp implements UserService {
 
   @Override
   public boolean removeUser(User remUser) {
-    for (User u : users) {
-      if (users.equals(remUser)) {
+      if (users.contains(remUser)) {
         users.remove(remUser);
         logger.info("The user has been removed successfully.");
         return true;
       }
-    }
     logger.warning("The user: " + remUser.getName() + " doesn't exist.");
     return false;
   }

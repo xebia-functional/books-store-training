@@ -22,7 +22,7 @@ public interface BookService {
   boolean removeBook(Book book);
 
   /**
-   * This method searchs a Book in a List by its title and author
+   * This method searches a Book in a List by its title and author
    *
    * @param title
    * @param author

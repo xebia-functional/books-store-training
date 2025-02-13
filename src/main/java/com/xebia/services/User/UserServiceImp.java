@@ -17,21 +17,21 @@ public class UserServiceImp implements UserService {
 
   @Override
   public boolean addUser(User newUser) {
-      if (users.contains(newUser)) {
-        logger.warning("The user already exists.");
-        return false;
-      }
+    if (users.contains(newUser)) {
+      logger.warning("The user already exists.");
+      return false;
+    }
     this.users.add(newUser);
     return true;
   }
 
   @Override
   public boolean removeUser(User remUser) {
-      if (users.contains(remUser)) {
-        users.remove(remUser);
-        logger.info("The user has been removed successfully.");
-        return true;
-      }
+    if (users.contains(remUser)) {
+      users.remove(remUser);
+      logger.info("The user has been removed successfully.");
+      return true;
+    }
     logger.warning("The user: " + remUser.getName() + " doesn't exist.");
     return false;
   }

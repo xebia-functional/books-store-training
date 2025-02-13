@@ -1,4 +1,4 @@
-package com.xebia.services;
+package com.xebia.services.User;
 
 import com.xebia.models.User;
 import java.util.*;

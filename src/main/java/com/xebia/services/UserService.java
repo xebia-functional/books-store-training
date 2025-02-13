@@ -8,7 +8,7 @@ public interface UserService {
 
   boolean removeUser(User remUser);
 
-  boolean searchUser(String Username);
+  Optional<User> searchUser(String Username);
 
   void listUsers();
 }

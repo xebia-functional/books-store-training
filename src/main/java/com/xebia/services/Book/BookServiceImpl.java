@@ -73,7 +73,7 @@ public class BookServiceImpl implements BookService {
   @Override
   public Optional<Book> searchBookByAuthor(String author) {
     for (Book b : bookList) {
-      if (b.getTitle().equalsIgnoreCase(author)) {
+      if (b.getAuthor().equalsIgnoreCase(author)) {
         return Optional.of(b);
       }
     }

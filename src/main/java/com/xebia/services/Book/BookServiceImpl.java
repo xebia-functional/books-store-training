@@ -8,20 +8,10 @@ public class BookServiceImpl implements BookService {
 
   private List<Book> bookList;
   private Logger logger;
-  private boolean available;
 
   public BookServiceImpl(Logger logger) {
     this.bookList = new ArrayList<>();
     this.logger = logger;
-    this.available = true;
-  }
-
-  public boolean isAvailable() {
-    return available;
-  }
-
-  public void setAvailable(boolean available) {
-    this.available = available;
   }
 
   @Override

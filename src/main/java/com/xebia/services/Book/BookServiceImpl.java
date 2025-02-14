@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
   public Optional<Book> searchBook(String title, String author) {
     Book b = new Book(title, author);
     if (!bookList.contains(b)) {
-      logger.info(
+      logger.warning(
           "The book with the title '"
               + title
               + "' and the author '"
@@ -46,7 +46,6 @@ public class BookServiceImpl implements BookService {
               + "' doesn't exists in the list.");
       return Optional.empty();
     }
-    logger.warning("The book doesn't exists in the list.");
     return Optional.of(b);
   }
 

@@ -12,7 +12,6 @@ public class BookServiceImpl implements BookService {
   public BookServiceImpl(Logger logger) {
     this.bookList = new ArrayList<>();
     this.logger = logger;
-    this.available = true;
   }
 
   @Override

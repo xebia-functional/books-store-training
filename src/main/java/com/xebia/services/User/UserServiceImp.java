@@ -29,7 +29,7 @@ public class UserServiceImp implements UserService {
   public boolean removeUser(User remUser) {
     if (users.contains(remUser)) {
       users.remove(remUser);
-      logger.info("The user " + remUser.getName() + " has been removed successfully.");
+      logger.info("The user "+remUser.getName()+" has been removed successfully.");```
       return true;
     }
     logger.warning("The user: " + remUser.getName() + " doesn't exist.");

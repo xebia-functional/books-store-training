@@ -18,7 +18,7 @@ public class TestUserServiceImp {
 
   @BeforeEach
   void setUp() {
-    logger = Logger.getLogger(testUserServiceImp.class.getName());
+    logger = Logger.getLogger(TestUserServiceImp.class.getName());
     userService = new UserServiceImp(logger);
   }
 
@@ -35,7 +35,7 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void addUserShouldntWork() {
+  public void addUserShouldWorkWhenDuplicate() {
     // Given
     User newUser = new User("Manolo", 12345);
     userService.addUser(newUser);
@@ -62,7 +62,7 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void removeBookShouldntWork() {
+  public void removeBookShouldWorkWhenNotFound() {
     // Given
     User newUser = new User("Manolo", 12345);
     // When
@@ -86,10 +86,8 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void searchUserShouldntWork() {
+  public void searchUserShouldWorkWhenNotFound() {
     // Given
-    User newUser = new User("Manolo", 12345);
-
     // When
     Optional<User> userSearch = userService.searchUser("Manolo");
 
@@ -116,7 +114,7 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void listUserShouldntWork() {
+  public void listUserShouldWorkWhenEmpty() {
     // Given
 
     // When

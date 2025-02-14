@@ -48,7 +48,7 @@ public class BookServiceImpl implements BookService {
   public Optional<Book> searchBook(String title, String author) {
     Book b = new Book(title, author);
     if (!bookList.contains(b)) {
-      logger.info(
+      logger.warning(
           "The book with the title '"
               + title
               + "' and the author '"
@@ -56,7 +56,6 @@ public class BookServiceImpl implements BookService {
               + "' doesn't exists in the list.");
       return Optional.empty();
     }
-    logger.warning("The book doesn't exists in the list.");
     return Optional.of(b);
   }
 
@@ -73,7 +72,7 @@ public class BookServiceImpl implements BookService {
   @Override
   public Optional<Book> searchBookByAuthor(String author) {
     for (Book b : bookList) {
-      if (b.getTitle().equalsIgnoreCase(author)) {
+      if (b.getAuthor().equalsIgnoreCase(author)) {
         return Optional.of(b);
       }
     }

@@ -15,14 +15,6 @@ public class BookServiceImpl implements BookService {
     this.available = true;
   }
 
-  public boolean isAvailable() {
-    return available;
-  }
-
-  public void setAvailable(boolean available) {
-    this.available = available;
-  }
-
   @Override
   public boolean addBook(Book book) {
     if (bookList.contains(book)) {

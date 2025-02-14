@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class testUserServiceImp {
+public class TestUserServiceImp {
 
   private List<User> users;
   private Logger logger;

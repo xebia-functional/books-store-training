@@ -8,7 +8,6 @@ public class BookServiceImpl implements BookService {
 
   private List<Book> bookList;
   private Logger logger;
-  private boolean available;
 
   public BookServiceImpl(Logger logger) {
     this.bookList = new ArrayList<>();

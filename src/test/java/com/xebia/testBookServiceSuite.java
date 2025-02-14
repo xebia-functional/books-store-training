@@ -23,7 +23,6 @@ public class testBookServiceSuite {
     // Given
     Book b1 = new Book("Title1", "Author1");
     Book b2 = new Book("Title2", "Author2");
-    Book b3 = new Book("Title3", "Author3");
     // When
     bs.addBook(b1);
     bs.addBook(b1);

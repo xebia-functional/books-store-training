@@ -35,18 +35,17 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public Optional<Book> searchBook(String title, String author) {
-    Book b = new Book(title, author);
-    if (!bookList.contains(b)) {
+  public Optional<Book> searchBook(Book book) {
+    if (!bookList.contains(book)) {
       logger.warning(
           "The book with the title '"
-              + title
+              + book.getTitle()
               + "' and the author '"
-              + author
+              + book.getAuthor()
               + "' doesn't exists in the list.");
       return Optional.empty();
     }
-    return Optional.of(b);
+    return Optional.of(book);
   }
 
   @Override

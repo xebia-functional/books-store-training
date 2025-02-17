@@ -62,7 +62,7 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void removeBookShouldWorkWhenNotFound() {
+  public void removeUserShouldWorkWhenNotFound() {
     // Given
     User newUser = new User("Manolo");
     // When

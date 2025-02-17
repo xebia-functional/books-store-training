@@ -24,10 +24,11 @@ public interface BookService {
   /**
    * This method searches a Book in a List by its title and author
    *
-   * @param book
+   * @param author
+   * @param id
    * @return Optional<Book>
    */
-  Optional<Book> searchBook(Book book);
+  Optional<Book> searchBook(String author, UUID id);
 
   /**
    * This method searches a Book in a List by its title

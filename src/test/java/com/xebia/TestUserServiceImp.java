@@ -25,7 +25,7 @@ public class TestUserServiceImp {
   @Test
   public void addUserShouldWork() {
     // Given
-    User newUser = new User("Manolo", 12345);
+    User newUser = new User("Manolo");
 
     // When
     boolean result = userService.addUser(newUser);
@@ -37,9 +37,9 @@ public class TestUserServiceImp {
   @Test
   public void addUserShouldWorkWhenDuplicate() {
     // Given
-    User newUser = new User("Manolo", 12345);
+    User newUser = new User("Manolo");
     userService.addUser(newUser);
-    User newUser2 = new User("Manolo", 12345);
+    User newUser2 = new User("Manolo");
 
     // When
     boolean result = userService.addUser(newUser2);
@@ -51,7 +51,7 @@ public class TestUserServiceImp {
   @Test
   public void removeBookShouldWork() {
     // Given
-    User newUser = new User("Manolo", 12345);
+    User newUser = new User("Manolo");
     userService.addUser(newUser);
 
     // When
@@ -64,7 +64,7 @@ public class TestUserServiceImp {
   @Test
   public void removeBookShouldWorkWhenNotFound() {
     // Given
-    User newUser = new User("Manolo", 12345);
+    User newUser = new User("Manolo");
     // When
     boolean result = userService.removeUser(newUser);
 
@@ -73,24 +73,47 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void searchUserShouldWork() {
+  public void searchUserByNameShouldWork() {
     // Given
-    User newUser = new User("Manolo", 12345);
+    User newUser = new User("Manolo");
     userService.addUser(newUser);
 
     // When
-    Optional<User> userSearch = userService.searchUser("Manolo");
+    Optional<User> userSearch = userService.searchUserByName("Manolo");
 
     // Expected
     assertEquals(newUser, userSearch.get());
   }
 
   @Test
-  public void searchUserShouldWorkWhenNotFound() {
+  public void searchUserByNameShouldWorkWhenNotFound() {
     // Given
     // When
-    Optional<User> userSearch = userService.searchUser("Manolo");
+    Optional<User> userSearch = userService.searchUserByName("Manolo");
 
+    // Expected
+    assertTrue(userSearch.isEmpty());
+  }
+
+  @Test
+  public void searchUserByIDShouldWork() {
+    // Given
+    User newUser = new User("Manolo");
+    userService.addUser(newUser);
+
+    // When
+    Optional<User> userSearch = userService.searchUserByID(newUser.getId());
+
+    // Expected
+    assertEquals(newUser, userSearch.get());
+  }
+
+  @Test
+  public void searchUserByIDShouldWorkWhenNotFound() {
+    // Given
+    User newUser = new User("Manolo");
+    // When
+    Optional<User> userSearch = userService.searchUserByID(newUser.getId());
     // Expected
     assertTrue(userSearch.isEmpty());
   }
@@ -98,9 +121,9 @@ public class TestUserServiceImp {
   @Test
   public void listUserShouldWork() {
     // Given
-    User user1 = new User("Manolo", 12345);
-    User user2 = new User("Pepe", 54321);
-    User user3 = new User("Juan", 15243);
+    User user1 = new User("Manolo");
+    User user2 = new User("Pepe");
+    User user3 = new User("Juan");
 
     userService.addUser(user1);
     userService.addUser(user2);

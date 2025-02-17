@@ -4,6 +4,7 @@ import com.xebia.models.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 public class UserServiceImp implements UserService {
@@ -17,9 +18,11 @@ public class UserServiceImp implements UserService {
 
   @Override
   public boolean addUser(User newUser) {
-    if (users.contains(newUser)) {
-      logger.warning("The user already exists.");
-      return false;
+    for (User u : users) {
+      if (u.getName().equals(newUser.getName())) {
+        logger.warning("The user" + newUser.getName() + " already exists.");
+        return false;
+      }
     }
     this.users.add(newUser);
     return true;
@@ -37,13 +40,24 @@ public class UserServiceImp implements UserService {
   }
 
   @Override
-  public Optional<User> searchUser(String userName) {
+  public Optional<User> searchUserByName(String userName) {
     for (User u : users) {
       if (u.getName().equalsIgnoreCase(userName)) {
         return Optional.of(u);
       }
     }
     logger.warning("No user register under the name " + userName);
+    return Optional.empty();
+  }
+
+  @Override
+  public Optional<User> searchUserByID(UUID userID) {
+    for (User u : users) {
+      if (u.getId().equals(userID)) {
+        return Optional.of(u);
+      }
+    }
+    logger.warning("No user register under the ID " + userID);
     return Optional.empty();
   }
 

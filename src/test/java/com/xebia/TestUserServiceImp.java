@@ -49,7 +49,7 @@ public class TestUserServiceImp {
   }
 
   @Test
-  public void removeBookShouldWork() {
+  public void removeUserShouldWork() {
     // Given
     User newUser = new User("Manolo");
     userService.addUser(newUser);

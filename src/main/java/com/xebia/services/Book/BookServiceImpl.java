@@ -70,6 +70,16 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  public Optional<Book> searchBookById(UUID id) {
+    for (Book b : bookList) {
+      if (b.getId().equals(id)) {
+        return Optional.of(b);
+      }
+    }
+    return Optional.empty();
+  }
+
+  @Override
   public List<Book> listBooks() {
     return bookList;
   }

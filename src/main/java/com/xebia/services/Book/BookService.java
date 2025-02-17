@@ -47,6 +47,14 @@ public interface BookService {
   Optional<Book> searchBookByAuthor(String author);
 
   /**
+   * This method searches a Book in a List by its id
+   *
+   * @param id
+   * @return Optional<Book>
+   */
+  Optional<Book> searchBookById(UUID id);
+
+  /**
    * This method return the List of available Books
    *
    * @return List<Book>

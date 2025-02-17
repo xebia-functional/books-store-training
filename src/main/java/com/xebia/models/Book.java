@@ -2,16 +2,19 @@ package com.xebia.models;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Book {
 
   private String title;
   private String author;
+  private UUID id;
   private LocalDate date;
 
   public Book(String title, String author) {
     this.title = title;
     this.author = author;
+    this.id = UUID.randomUUID();
   }
 
   public String getTitle() {
@@ -20,6 +23,10 @@ public class Book {
 
   public String getAuthor() {
     return author;
+  }
+
+  public UUID getId() {
+    return id;
   }
 
   public LocalDate getDate() {

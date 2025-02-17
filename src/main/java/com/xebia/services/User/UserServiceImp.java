@@ -19,7 +19,7 @@ public class UserServiceImp implements UserService {
   @Override
   public boolean addUser(User newUser) {
     for (User u : users) {
-      if (u.getName().equals(newUser.getName())) {
+      if (u.getName().equalsIgnoreCase(newUser.getName())) {
         logger.warning("The user" + newUser.getName() + " already exists.");
         return false;
       }

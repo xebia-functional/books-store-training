@@ -21,11 +21,9 @@ public class RegisterServiceImp implements RegisterService {
   @Override
   public boolean addRegister(UUID userID, UUID bookID, LocalDate rentDate) {
     Register newRegister = new Register(userID, bookID, rentDate);
-    for (Register r : registers) {
-      if (registers.contains(newRegister)) {
-        logger.warning("The register" + newRegister.toString() + " already exists.");
-        return false;
-      }
+    if (registers.contains(newRegister)) {
+      logger.warning("The register" + newRegister.toString() + " already exists.");
+      return false;
     }
     this.registers.add(newRegister);
     return true;

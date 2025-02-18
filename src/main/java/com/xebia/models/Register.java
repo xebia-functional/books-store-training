@@ -8,7 +8,13 @@ public class Register {
   private UUID userId;
   private UUID bookId;
   private LocalDate rentDate;
-  private LocalDate returnDate;
+  private Optional<LocalDate> returnDate;
+
+  public Register(UUID userId, UUID bookId) {
+    this.userId = userId;
+    this.bookId = bookId;
+    this.rentDate = LocalDate.now();
+  }
 
   public Register(UUID userId, UUID bookId, LocalDate rentDate) {
     this.userId = userId;
@@ -28,8 +34,16 @@ public class Register {
     return rentDate;
   }
 
-  public LocalDate getReturnDate() {
+  public Optional<LocalDate> getReturnDate() {
     return returnDate;
+  }
+
+  public void setReturnDate(Optional<LocalDate> returnDate) {
+    this.returnDate = returnDate;
+  }
+
+  public boolean isActive() {
+    return returnDate == null;
   }
 
   @Override

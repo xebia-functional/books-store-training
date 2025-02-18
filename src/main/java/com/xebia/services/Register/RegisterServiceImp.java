@@ -4,6 +4,7 @@ import com.xebia.models.Register;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -26,6 +27,30 @@ public class RegisterServiceImp implements RegisterService {
     }
     this.registers.add(newRegister);
     return true;
+  }
+
+  @Override
+  public boolean addRegister(UUID userID, UUID bookID) {
+    return addRegister(userID, bookID, LocalDate.now());
+  }
+
+  // in progress
+  @Override
+  public boolean closeRegister(UUID userID, UUID bookID, LocalDate returnDate) {
+    for (Register r : registers) {
+      if (r.getUserId().equals(userID) && r.getBookId().equals(bookID) && r.isActive()) {
+        r.setReturnDate(Optional.of(returnDate));
+        logger.info("The register " + r.toString() + " has been closed successfully.");
+        return true;
+      }
+    }
+    logger.warning("The register doesn't exist.");
+    return false;
+  }
+
+  @Override
+  public boolean closeRegister(UUID userID, UUID bookID) {
+    return closeRegister(userID, bookID, LocalDate.now());
   }
 
   @Override

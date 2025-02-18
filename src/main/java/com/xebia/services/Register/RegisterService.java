@@ -32,15 +32,15 @@ public interface RegisterService {
    * @param userID
    * @return
    */
-  Optional<Register> searchRegisterByUser(UUID userID);
+  List<Register> searchRegisterByUser(UUID userID);
 
   /**
-   * Method ta searches a register by BookID
+   * Method ta searches a register by bookID
    *
-   * @param BookID
+   * @param bookID
    * @return
    */
-  Optional<Register> searchRegisterByBook(UUID BookID);
+  List<Register> searchRegisterByBook(UUID bookID);
 
   /**
    * Method that lists all registered elements

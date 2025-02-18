@@ -22,15 +22,6 @@ public interface BookService {
   boolean removeBook(Book book);
 
   /**
-   * This method searches a Book in a List by its title and author
-   *
-   * @param author
-   * @param id
-   * @return Optional<Book>
-   */
-  Optional<Book> searchBook(String author, UUID id);
-
-  /**
    * This method searches a Book in a List by its title
    *
    * @param title

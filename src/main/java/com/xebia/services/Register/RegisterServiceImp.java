@@ -36,7 +36,7 @@ public class RegisterServiceImp implements RegisterService {
       logger.info("The register " + remRegister.toString() + " has been removed successfully.");
       return true;
     }
-    logger.warning("The user: " + remRegister.toString() + " doesn't exist.");
+    logger.warning("The register: " + remRegister.toString() + " doesn't exist.");
     return false;
   }
 
@@ -49,7 +49,7 @@ public class RegisterServiceImp implements RegisterService {
       }
     }
     if (userRegisters.isEmpty()) {
-      logger.warning("No user register under the name " + userID);
+      logger.warning("No registers found under the ID " + userID);
     }
     return userRegisters;
   }
@@ -63,7 +63,7 @@ public class RegisterServiceImp implements RegisterService {
       }
     }
     if (bookRegisters.isEmpty()) {
-      logger.warning("No user register under the name " + bookID);
+      logger.warning("No registers found under the ID " + bookID);
     }
     return bookRegisters;
   }
@@ -72,7 +72,7 @@ public class RegisterServiceImp implements RegisterService {
   public List<Register> listRegistered() {
     logger.info("----- Register's list -----");
     if (registers.isEmpty()) {
-      logger.info("No users registered.");
+      logger.info("No registers found");
     } else {
       for (Register r : registers) {
         logger.info(r.toString());

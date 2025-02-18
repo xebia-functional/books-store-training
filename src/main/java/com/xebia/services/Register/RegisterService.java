@@ -32,7 +32,7 @@ public interface RegisterService {
    * @param userID
    * @return
    */
-  boolean searchRegisterByUser(UUID userID);
+  Optional<Register> searchRegisterByUser(UUID userID);
 
   /**
    * Method ta searches a register by BookID
@@ -40,7 +40,7 @@ public interface RegisterService {
    * @param BookID
    * @return
    */
-  boolean searchRegisterByBook(UUID BookID);
+  Optional<Register> searchRegisterByBook(UUID BookID);
 
   /**
    * Method that lists all registered elements

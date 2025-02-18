@@ -13,7 +13,7 @@ public interface UserService {
   boolean addUser(User newUser);
 
   /**
-   * This method adds an User to the User list
+   * This method adds a User to the User list
    *
    * @param remUser
    * @return boolean
@@ -26,7 +26,15 @@ public interface UserService {
    * @param userName
    * @return Optional.of(user)
    */
-  Optional<User> searchUser(String userName);
+  Optional<User> searchUserByName(String userName);
+
+  /**
+   * This method returns the user that matches with the parameter ID
+   *
+   * @param userID
+   * @return Optional.of(user)
+   */
+  Optional<User> searchUserByID(UUID userID);
 
   /**
    * This method returns a list of the registered users

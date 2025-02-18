@@ -5,44 +5,44 @@ import java.util.*;
 
 public class Register {
 
-  private UUID user_id;
-  private UUID book_id;
-  private LocalDate rent_date;
-  private LocalDate return_date;
+  private UUID userId;
+  private UUID bookId;
+  private LocalDate rentDate;
+  private LocalDate returnDate;
 
-  public Register(User user, Book book, LocalDate rent_date) {
-    this.user_id = user.getId();
-    this.book_id = book.getId();
-    this.rent_date = rent_date;
+  public Register(UUID userId, UUID bookId, LocalDate rentDate) {
+    this.userId = userId;
+    this.bookId = bookId;
+    this.rentDate = rentDate;
   }
 
   public UUID getUser_id() {
-    return user_id;
+    return userId;
   }
 
   public UUID getBook_id() {
-    return book_id;
+    return bookId;
   }
 
   public LocalDate getRent_date() {
-    return rent_date;
+    return rentDate;
   }
 
   public LocalDate getReturn_date() {
-    return return_date;
+    return returnDate;
   }
 
   @Override
   public String toString() {
     return "Register{"
         + "user_id="
-        + user_id
+        + userId
         + ", book_id="
-        + book_id
+        + bookId
         + ", rent_date="
-        + rent_date
+        + rentDate
         + ", return_date="
-        + return_date
+        + returnDate
         + '}';
   }
 
@@ -50,14 +50,14 @@ public class Register {
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) return false;
     Register register = (Register) o;
-    return Objects.equals(user_id, register.user_id)
-        && Objects.equals(book_id, register.book_id)
-        && Objects.equals(rent_date, register.rent_date)
-        && Objects.equals(return_date, register.return_date);
+    return Objects.equals(userId, register.userId)
+        && Objects.equals(bookId, register.bookId)
+        && Objects.equals(rentDate, register.rentDate)
+        && Objects.equals(returnDate, register.returnDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user_id, book_id, rent_date, return_date);
+    return Objects.hash(userId, bookId, rentDate, returnDate);
   }
 }

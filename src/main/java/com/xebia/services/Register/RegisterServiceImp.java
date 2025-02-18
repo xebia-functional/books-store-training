@@ -12,7 +12,6 @@ public class RegisterServiceImp implements RegisterService {
 
   private List<Register> registers;
   private Logger logger;
-  private Register newRegister;
 
   public RegisterServiceImp(Logger logger) {
     this.registers = new ArrayList<>();
@@ -21,7 +20,7 @@ public class RegisterServiceImp implements RegisterService {
 
   @Override
   public boolean addRegister(UUID userID, UUID bookID, LocalDate rentDate) {
-    newRegister = new Register(userID, bookID, rentDate);
+    Register newRegister = new Register(userID, bookID, rentDate);
     for (Register r : registers) {
       if (registers.contains(newRegister)) {
         logger.warning("The register" + newRegister.toString() + " already exists.");
@@ -34,13 +33,13 @@ public class RegisterServiceImp implements RegisterService {
 
   @Override
   public boolean removeRegister(UUID userID, UUID bookID, LocalDate rentDate) {
-    newRegister = new Register(userID, bookID, rentDate);
-    if (registers.contains(newRegister)) {
-      registers.remove(newRegister);
-      logger.info("The register " + newRegister.toString() + " has been removed successfully.");
+    Register remRegister = new Register(userID, bookID, rentDate);
+    if (registers.contains(remRegister)) {
+      registers.remove(remRegister);
+      logger.info("The register " + remRegister.toString() + " has been removed successfully.");
       return true;
     }
-    logger.warning("The user: " + newRegister.toString() + " doesn't exist.");
+    logger.warning("The user: " + remRegister.toString() + " doesn't exist.");
     return false;
   }
 

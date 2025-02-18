@@ -1,4 +1,3 @@
 package com.xebia.services.Register;
 
-public class RegisterServiceImp {
-}
+public class RegisterServiceImp {}

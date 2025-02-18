@@ -1,4 +1,3 @@
 package com.xebia;
 
-public class TestRegisterServiceSuite {
-}
+public class TestRegisterServiceSuite {}

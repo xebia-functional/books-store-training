@@ -20,32 +20,16 @@ public class Register {
     return user_id;
   }
 
-  public void setUser_id(UUID user_id) {
-    this.user_id = user_id;
-  }
-
   public UUID getBook_id() {
     return book_id;
-  }
-
-  public void setBook_id(UUID book_id) {
-    this.book_id = book_id;
   }
 
   public LocalDate getRent_date() {
     return rent_date;
   }
 
-  public void setRent_date(LocalDate rent_date) {
-    this.rent_date = rent_date;
-  }
-
   public LocalDate getReturn_date() {
     return return_date;
-  }
-
-  public void setReturn_date(LocalDate return_date) {
-    this.return_date = return_date;
   }
 
   @Override

@@ -9,10 +9,10 @@ import java.util.*;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.*;
 
-public class testBookServiceSuite {
+public class TestBookServiceSuite {
 
   // private List<Book> bookList;
-  private Logger log = Logger.getLogger(testBookServiceSuite.class.getName());
+  private Logger log = Logger.getLogger(TestBookServiceSuite.class.getName());
   private BookService bs = new BookServiceImpl(log);
 
   @BeforeEach

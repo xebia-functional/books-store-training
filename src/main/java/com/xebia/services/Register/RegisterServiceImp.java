@@ -4,7 +4,6 @@ import com.xebia.models.Register;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -42,25 +41,31 @@ public class RegisterServiceImp implements RegisterService {
   }
 
   @Override
-  public Optional<Register> searchRegisterByUser(UUID userID) {
+  public List<Register> searchRegisterByUser(UUID userID) {
+    List<Register> userRegisters = new ArrayList<>();
     for (Register r : registers) {
       if (r.getUserId().equals(userID)) {
-        return Optional.of(r);
+        userRegisters.add(r);
       }
     }
-    logger.warning("No user register under the name " + userID);
-    return Optional.empty();
+    if (userRegisters.isEmpty()) {
+      logger.warning("No user register under the name " + userID);
+    }
+    return userRegisters;
   }
 
   @Override
-  public Optional<Register> searchRegisterByBook(UUID bookID) {
+  public List<Register> searchRegisterByBook(UUID bookID) {
+    List<Register> bookRegisters = new ArrayList<>();
     for (Register r : registers) {
       if (r.getBookId().equals(bookID)) {
-        return Optional.of(r);
+        bookRegisters.add(r);
       }
     }
-    logger.warning("No user register under the name " + bookID);
-    return Optional.empty();
+    if (bookRegisters.isEmpty()) {
+      logger.warning("No user register under the name " + bookID);
+    }
+    return bookRegisters;
   }
 
   @Override

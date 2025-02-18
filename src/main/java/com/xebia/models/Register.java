@@ -16,32 +16,32 @@ public class Register {
     this.rentDate = rentDate;
   }
 
-  public UUID getUser_id() {
+  public UUID getUserId() {
     return userId;
   }
 
-  public UUID getBook_id() {
+  public UUID getBookId() {
     return bookId;
   }
 
-  public LocalDate getRent_date() {
+  public LocalDate getRentDate() {
     return rentDate;
   }
 
-  public LocalDate getReturn_date() {
+  public LocalDate getReturnDate() {
     return returnDate;
   }
 
   @Override
   public String toString() {
     return "Register{"
-        + "user_id="
+        + "user id="
         + userId
-        + ", book_id="
+        + ", book id="
         + bookId
-        + ", rent_date="
+        + ", rent date="
         + rentDate
-        + ", return_date="
+        + ", return date="
         + returnDate
         + '}';
   }

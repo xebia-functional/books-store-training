@@ -1,15 +1,14 @@
 package com.xebia.services.Bookstore;
 
 import com.xebia.models.Book;
+import com.xebia.models.Register;
 import com.xebia.models.User;
 import com.xebia.services.Book.BookService;
-import com.xebia.services.Book.BookServiceImpl;
 import com.xebia.services.Register.RegisterService;
-import com.xebia.services.Register.RegisterServiceImp;
 import com.xebia.services.User.UserService;
-import com.xebia.services.User.UserServiceImp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class BookstoreServiceImp implements BookstoreService {
@@ -18,40 +17,58 @@ public class BookstoreServiceImp implements BookstoreService {
   private BookService bookSer;
   private UserService userSer;
   private RegisterService regSer;
-  private List<Book> borrowedList;
 
-  public BookstoreServiceImp(
-      BookServiceImpl bookImp, UserServiceImp userImp, RegisterServiceImp regImp) {
+  public BookstoreServiceImp(BookService bookImp, UserService userImp, RegisterService regImp) {
     this.bookSer = bookImp;
     this.userSer = userImp;
     this.regSer = regImp;
-    borrowedList = new ArrayList<>();
   }
 
   @Override
   public boolean requestBook(Book book, User user) {
-    if (bookSer.listBooks().contains(book)) {
-      regSer.addRegister(user.getId(), book.getId());
-      bookSer.removeBook(book);
-      borrowedList.add(book);
-      return true;
+    Optional<User> searchedUser = userSer.searchUserByID(user.getId());
+    if (searchedUser.isEmpty()) {
+      logger.warning("The user doesn't exists in the bookstore");
+      return false;
+    } else {
+      Optional<Book> searchedBook = bookSer.searchBookById(book.getId());
+      if (searchedBook.isEmpty()) {
+        logger.warning("The Book doesn't exists in the bookstore");
+        return false;
+      } else {
+        if (searchedBook.get().isAvailable()) {
+          if (regSer.addRegister(user.getId(), book.getId())) {
+            bookSer.updateAvailability(book.getId(), false);
+            return true;
+          } else {
+            logger.warning("The user already borrowed the book");
+            return false;
+          }
+        } else {
+          logger.warning("The Book is not available in the bookstore");
+          return false;
+        }
+      }
     }
-    logger.warning("The Book doesn't exists in the bookstore");
-    return false;
   }
 
   @Override
   public boolean returnBook(Book book, User user) {
-    if (borrowedList.contains(book)) {
-      borrowedList.remove(book);
-      bookSer.addBook(book);
-      regSer.closeRegister(user.getId(), book.getId());
-      logger.info("Book returned with success");
-      return true;
+    Optional<User> searchedUser = userSer.searchUserByID(user.getId());
+    if (searchedUser.isEmpty()) {
+      logger.warning("The user doesn't exists in the bookstore");
+      return false;
+    } else {
+      Optional<Book> searchedBook = bookSer.searchBookById(book.getId());
+      if (searchedBook.isEmpty()) {
+        logger.warning("The Book doesn't exists in the bookstore");
+        return false;
+      } else {
+        regSer.closeRegister(user.getId(), book.getId());
+        bookSer.updateAvailability(book.getId(), true);
+        return true;
+      }
     }
-    logger.warning("The Book doesn't exists in the bookstore");
-
-    return false;
   }
 
   @Override
@@ -61,6 +78,13 @@ public class BookstoreServiceImp implements BookstoreService {
 
   @Override
   public List<Book> listBorrowed() {
-    return borrowedList;
+    List<Book> borrowed = new ArrayList<>();
+    for (Register r : regSer.listRegistered()) {
+      if (r.isActive()) {
+        Book b = bookSer.searchBookById(r.getBookId()).get();
+        borrowed.add(b);
+      }
+    }
+    return borrowed;
   }
 }

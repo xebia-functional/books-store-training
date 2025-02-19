@@ -68,4 +68,9 @@ public class BookServiceImpl implements BookService {
   public List<Book> listBooks() {
     return bookList;
   }
+
+  @Override
+  public void updateAvailability(UUID bookId, boolean availability) {
+    searchBookById(bookId).get().setAvailable(availability);
+  }
 }

@@ -1,6 +1,6 @@
 package com.xebia;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.xebia.models.Book;
 import com.xebia.services.Book.BookService;
@@ -104,5 +104,18 @@ public class TestBookServiceSuite {
     bs.addBook(b3);
     // Expected
     assertEquals(3, bs.listBooks().size());
+  }
+
+  @Test
+  public void updateAvailabilityShouldWork() {
+    // Given
+    Book b1 = new Book("Title1", "Author1");
+    bs.addBook(b1);
+
+    // When
+    bs.updateAvailability(b1.getId(), false);
+
+    // Expected
+    assertFalse(b1.isAvailable());
   }
 }

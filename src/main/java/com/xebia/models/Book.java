@@ -10,11 +10,13 @@ public class Book {
   private String author;
   private UUID id;
   private LocalDate date;
+  private boolean available;
 
   public Book(String title, String author) {
     this.title = title;
     this.author = author;
     this.id = UUID.randomUUID();
+    this.available = true;
   }
 
   public String getTitle() {
@@ -31,6 +33,14 @@ public class Book {
 
   public LocalDate getDate() {
     return date;
+  }
+
+  public boolean isAvailable() {
+    return available;
+  }
+
+  public void setAvailable(boolean available) {
+    this.available = available;
   }
 
   @Override

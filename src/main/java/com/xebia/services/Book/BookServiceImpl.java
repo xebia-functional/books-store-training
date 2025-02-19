@@ -68,4 +68,14 @@ public class BookServiceImpl implements BookService {
   public List<Book> listBooks() {
     return bookList;
   }
+
+  @Override
+  public void updateAvailability(UUID bookId, boolean availability) {
+    Optional<Book> searchedBook = searchBookById(bookId);
+    if (searchedBook.isEmpty()) {
+      logger.warning("The book doesn't exists");
+    } else {
+      searchedBook.get().setAvailable(availability);
+    }
+  }
 }

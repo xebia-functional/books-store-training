@@ -51,4 +51,12 @@ public interface BookService {
    * @return List<Book>
    */
   List<Book> listBooks();
+
+  /**
+   * This method updates the availability of a book
+   *
+   * @param bookId
+   * @param availability
+   */
+  void updateAvailability(UUID bookId, boolean availability);
 }

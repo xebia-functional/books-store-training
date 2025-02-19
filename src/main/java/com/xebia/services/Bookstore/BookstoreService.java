@@ -6,7 +6,7 @@ import java.util.*;
 public interface BookstoreService {
 
   /**
-   * This method allows an user to request a book
+   * This method allows a user to request a book
    *
    * @param book
    * @param user
@@ -15,7 +15,7 @@ public interface BookstoreService {
   boolean requestBook(Book book, User user);
 
   /**
-   * This method allows an user to return a book
+   * This method allows a user to return a book
    *
    * @param book
    * @param user

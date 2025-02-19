@@ -17,6 +17,35 @@ public interface RegisterService {
   boolean addRegister(UUID userID, UUID bookID, LocalDate rentDate);
 
   /**
+   * This method adds a new register setting the date as now
+   *
+   * @param userID
+   * @param bookID
+   * @return
+   */
+  boolean addRegister(UUID userID, UUID bookID);
+
+  /**
+   * This method will set the return date to the register, introducing manually the date
+   *
+   * @param userID
+   * @param bookID
+   * @param returnDate
+   * @return
+   */
+  boolean closeRegister(UUID userID, UUID bookID, LocalDate returnDate);
+
+  /**
+   * This method will set the return date to the register, meaning that the book was returned at
+   * `returnDate`
+   *
+   * @param userID
+   * @param bookID
+   * @return
+   */
+  boolean closeRegister(UUID userID, UUID bookID);
+
+  /**
    * Method that removes a register
    *
    * @param userID

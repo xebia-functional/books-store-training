@@ -50,6 +50,81 @@ public class TestRegisterServiceSuite {
   }
 
   @Test
+  public void addRegisterDatelessShouldWork() {
+    // Given
+    // When
+    boolean result = registerService.addRegister(UUID.randomUUID(), UUID.randomUUID());
+
+    // Expected
+    assertTrue(result);
+  }
+
+  @Test
+  public void addRegisterDatelessShouldWorkWhenDuplicate() {
+    // Given
+    UUID duplicateBook = UUID.randomUUID();
+    UUID duplicateUser = UUID.randomUUID();
+    registerService.addRegister(duplicateUser, duplicateBook, LocalDate.now());
+
+    // When
+    boolean result = registerService.addRegister(duplicateUser, duplicateBook);
+
+    // Expected
+    assertFalse(result);
+  }
+
+  @Test
+  public void closeRegisterShouldWork() {
+    // Given
+    LocalDate date = LocalDate.now();
+    UUID sampleBookID = UUID.randomUUID();
+    UUID sampleUserID = UUID.randomUUID();
+    registerService.addRegister(sampleUserID, sampleBookID, date);
+
+    // When
+    boolean result = registerService.closeRegister(sampleUserID, sampleBookID, date);
+
+    // Expected
+    assertTrue(result);
+  }
+
+  @Test
+  public void closeRegisterShouldWorkWhenNotFound() {
+    // Given
+    // When
+    boolean result =
+        registerService.closeRegister(UUID.randomUUID(), UUID.randomUUID(), LocalDate.now());
+
+    // Expected
+    assertFalse(result);
+  }
+
+  @Test
+  public void closeRegisterDatelessShouldWork() {
+    // Given
+    LocalDate date = LocalDate.now();
+    UUID sampleBookID = UUID.randomUUID();
+    UUID sampleUserID = UUID.randomUUID();
+    registerService.addRegister(sampleUserID, sampleBookID);
+
+    // When
+    boolean result = registerService.closeRegister(sampleUserID, sampleBookID);
+
+    // Expected
+    assertTrue(result);
+  }
+
+  @Test
+  public void closeRegisterDatelessShouldWorkWhenNotFound() {
+    // Given
+    // When
+    boolean result = registerService.closeRegister(UUID.randomUUID(), UUID.randomUUID());
+
+    // Expected
+    assertFalse(result);
+  }
+
+  @Test
   public void removeRegisterShouldWork() {
     // Given
     UUID sampleBook = UUID.randomUUID();

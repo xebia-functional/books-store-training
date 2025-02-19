@@ -64,11 +64,19 @@ public class BookstoreServiceImp implements BookstoreService {
         logger.warning("The Book doesn't exists in the bookstore");
         return false;
       } else {
-        regSer.closeRegister(user.getId(), book.getId());
-        bookSer.updateAvailability(book.getId(), true);
-        return true;
+        List<Register> registers = regSer.searchRegisterByBook(book.getId());
+
+        for (Register r : registers) {
+          if (r.getUserId().equals(user.getId()) && r.isActive()) {
+            regSer.closeRegister(user.getId(), book.getId());
+            bookSer.updateAvailability(book.getId(), true);
+            return true;
+          }
+        }
       }
     }
+    logger.warning("The register doesn't exists");
+    return false;
   }
 
   @Override

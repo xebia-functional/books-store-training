@@ -71,6 +71,11 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public void updateAvailability(UUID bookId, boolean availability) {
-    searchBookById(bookId).get().setAvailable(availability);
+    Optional<Book> searchedBook = searchBookById(bookId);
+    if (searchedBook.isEmpty()) {
+      logger.warning("The book doesn't exists");
+    } else {
+      searchedBook.get().setAvailable(availability);
+    }
   }
 }

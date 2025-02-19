@@ -72,7 +72,7 @@ public class TestBookServiceSuite {
     // When
     List<Book> booksearch = bs.searchBookByAuthor("author1");
     // Expected
-    assertEquals(b1, booksearch.getFirst());
+    assertEquals(b1, booksearch.get(0));
   }
 
   @Test

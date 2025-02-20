@@ -14,7 +14,7 @@ dependencies {
     testImplementation(platform(libs.junit.jupiter.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation(libs.flyway)
-    implementation("org.postgresql:postgresql:42.5.0")
+    implementation(libs.postgresql)
 }
 
 tasks.test {

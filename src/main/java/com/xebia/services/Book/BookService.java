@@ -35,7 +35,7 @@ public interface BookService {
    * @param author
    * @return Optional<Book>
    */
-  Optional<Book> searchBookByAuthor(String author);
+  List<Book> searchBookByAuthor(String author);
 
   /**
    * This method searches a Book in a List by its id

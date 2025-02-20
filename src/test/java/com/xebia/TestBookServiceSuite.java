@@ -70,9 +70,9 @@ public class TestBookServiceSuite {
     bs.addBook(b2);
     bs.addBook(b3);
     // When
-    Optional<Book> booksearch = bs.searchBookByAuthor("author1");
+    List<Book> booksearch = bs.searchBookByAuthor("author1");
     // Expected
-    assertEquals(b1, booksearch.get());
+    assertEquals(b1, booksearch.get(0));
   }
 
   @Test

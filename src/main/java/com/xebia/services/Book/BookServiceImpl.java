@@ -45,13 +45,17 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public Optional<Book> searchBookByAuthor(String author) {
+  public List<Book> searchBookByAuthor(String author) {
+    List<Book> authorBooks = new ArrayList<>();
     for (Book b : bookList) {
       if (b.getAuthor().equalsIgnoreCase(author)) {
-        return Optional.of(b);
+        authorBooks.add(b);
       }
     }
-    return Optional.empty();
+    if (authorBooks.isEmpty()) {
+      logger.warning("No books from the author " + author + " exist");
+    }
+    return authorBooks;
   }
 
   @Override

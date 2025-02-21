@@ -13,7 +13,8 @@ repositories {
 dependencies {
     testImplementation(platform(libs.junit.jupiter.bom))
     testImplementation("org.junit.jupiter:junit-jupiter")
-
+    implementation(libs.flyway)
+    implementation(libs.postgresql)
 }
 
 tasks.test {
@@ -25,3 +26,4 @@ spotless {
         googleJavaFormat()
     }
 }
+

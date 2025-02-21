@@ -1,12 +1,13 @@
 package com.xebia.migrations;
 
+import com.xebia.database.DatabaseManager;
 import org.flywaydb.core.Flyway;
 
 public class FlywayMigration {
   public static void main(String[] args) {
     Flyway flyway =
         Flyway.configure()
-            .dataSource("jdbc:postgresql://localhost:5432/bookstore_db", "xebia_user", "xebia_pw")
+            .dataSource(DatabaseManager.URL, DatabaseManager.USER, DatabaseManager.PASSWORD)
             .locations("classpath:db/migrations")
             .load();
 

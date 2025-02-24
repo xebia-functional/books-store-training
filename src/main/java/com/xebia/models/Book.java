@@ -6,26 +6,26 @@ import java.util.UUID;
 
 public class Book {
 
+  private UUID id;
   private String title;
   private String author;
-  private UUID id;
   private LocalDate date;
   private boolean available;
 
-  public Book(String title, String author, UUID id, LocalDate date, boolean available) {
+  public Book(UUID id, String title, String author, LocalDate date, boolean available) {
+    this.id = id;
     this.title = title;
     this.author = author;
-    this.id = id;
     this.date = date;
     this.available = available;
   }
 
   public Book(String title, String author) {
+    this.id = UUID.randomUUID();
     this.title = title;
     this.author = author;
-    this.id = UUID.randomUUID();
-    this.available = true;
     this.date = LocalDate.now();
+    this.available = true;
   }
 
   public String getTitle() {

@@ -73,4 +73,9 @@ public class UserServiceImp implements UserService {
     }
     return users;
   }
+
+  @Override
+  public boolean containsUser(User user) {
+    return false;
+  }
 }

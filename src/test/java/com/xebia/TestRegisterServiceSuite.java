@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.xebia.models.Register;
 import com.xebia.services.Register.RegisterService;
 import com.xebia.services.Register.RegisterServiceImp;
+import com.xebia.user.TestUserServiceSuite;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;

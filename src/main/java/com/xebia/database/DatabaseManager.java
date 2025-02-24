@@ -14,6 +14,11 @@ public class DatabaseManager {
     return DriverManager.getConnection(URL, USER, PASSWORD);
   }
 
+  public static Connection getConnection(String url, String user, String password)
+      throws SQLException {
+    return DriverManager.getConnection(url, user, password);
+  }
+
   public static void main(String[] args) {
     try (Connection connection = DatabaseManager.getConnection()) {
       Book book = new Book("The Pragmatic Programmer", "Andrew Hunt, David Thomas");

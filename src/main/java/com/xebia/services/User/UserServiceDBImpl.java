@@ -1,9 +1,9 @@
 package com.xebia.services.User;
 
-import com.xebia.database.DatabaseManager;
 import com.xebia.models.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +16,12 @@ public class UserServiceDBImpl implements UserService {
   private final Connection connection;
   private Logger logger;
 
-  public UserServiceDBImpl(Logger logger) throws SQLException {
-    this.connection = DatabaseManager.getConnection();
+  public UserServiceDBImpl(Logger logger, Connection connection) throws SQLException {
+    this.connection = connection;
     this.logger = logger;
   }
 
-  private boolean containsUser(User user) {
+  public boolean containsUser(User user) {
     try {
       String selectQuery = "SELECT * FROM Users WHERE id = ?";
       PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
@@ -36,7 +36,7 @@ public class UserServiceDBImpl implements UserService {
 
   @Override
   public boolean addUser(User user) {
-    try (Connection connection = DatabaseManager.getConnection()) {
+    try {
       if (containsUser(user)) {
         logger.warning("The user already exists in the list.");
         return false;
@@ -57,7 +57,7 @@ public class UserServiceDBImpl implements UserService {
 
   @Override
   public boolean removeUser(User user) {
-    try (Connection connection = DatabaseManager.getConnection()) {
+    try {
       if (!containsUser(user)) {
         logger.warning("The user does not exist in the list.");
         return false;
@@ -81,7 +81,7 @@ public class UserServiceDBImpl implements UserService {
       String selectQuery = "SELECT * FROM Users WHERE name = ?";
       PreparedStatement stmt = connection.prepareStatement(selectQuery);
       stmt.setString(1, userName);
-      var resultSet = stmt.executeQuery();
+      ResultSet resultSet = stmt.executeQuery();
 
       if (resultSet.next()) {
         User user = new User((UUID) resultSet.getObject("id"), resultSet.getString("name"));
@@ -97,7 +97,7 @@ public class UserServiceDBImpl implements UserService {
   @Override
   public Optional<User> searchUserByID(UUID userID) {
     try {
-      String selectQuery = "SELECT * FROM Users WHERE name = ?";
+      String selectQuery = "SELECT * FROM Users WHERE id = ?";
       PreparedStatement stmt = connection.prepareStatement(selectQuery);
       stmt.setObject(1, userID);
       var resultSet = stmt.executeQuery();

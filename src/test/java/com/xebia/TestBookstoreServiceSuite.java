@@ -11,6 +11,7 @@ import com.xebia.services.Register.RegisterService;
 import com.xebia.services.Register.RegisterServiceImp;
 import com.xebia.services.User.UserService;
 import com.xebia.services.User.UserServiceImp;
+import com.xebia.user.TestUserServiceSuite;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

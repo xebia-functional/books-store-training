@@ -1,4 +1,4 @@
-package com.xebia;
+package com.xebia.user;
 
 import static org.junit.jupiter.api.Assertions.*;
 

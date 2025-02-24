@@ -1,5 +1,6 @@
 package com.xebia.database;
 
+import com.xebia.migrations.FlywayMigration;
 import com.xebia.models.Book;
 
 import java.sql.*;

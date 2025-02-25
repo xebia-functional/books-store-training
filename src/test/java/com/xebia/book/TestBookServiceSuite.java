@@ -55,9 +55,9 @@ public class TestBookServiceSuite {
     bs.addBook(b2);
     bs.addBook(b3);
     // When
-    Optional<Book> booksearch = bs.searchBookByTitle("title2");
+    List<Book> booksearch = bs.searchBookByTitle("title2");
     // Expected
-    assertEquals(b2, booksearch.get());
+    assertEquals(booksearch, bs.searchBookByTitle("title2"));
   }
 
   @Test

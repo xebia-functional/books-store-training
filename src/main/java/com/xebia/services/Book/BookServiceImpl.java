@@ -35,13 +35,14 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public Optional<Book> searchBookByTitle(String title) {
+  public List<Book> searchBookByTitle(String title) {
+    List<Book> books = new ArrayList<>();
     for (Book b : bookList) {
       if (b.getTitle().equalsIgnoreCase(title)) {
-        return Optional.of(b);
+        books.add(b);
       }
     }
-    return Optional.empty();
+    return books;
   }
 
   @Override
@@ -81,5 +82,10 @@ public class BookServiceImpl implements BookService {
     } else {
       searchedBook.get().setAvailable(availability);
     }
+  }
+
+  @Override
+  public boolean containsBook(Book book) {
+    return false;
   }
 }

@@ -27,7 +27,7 @@ public interface BookService {
    * @param title
    * @return Optional<Book>
    */
-  Optional<Book> searchBookByTitle(String title);
+  List<Book> searchBookByTitle(String title);
 
   /**
    * This method searches a Book in a List by its author
@@ -59,4 +59,6 @@ public interface BookService {
    * @param availability
    */
   void updateAvailability(UUID bookId, boolean availability);
+
+  boolean containsBook(Book newBook);
 }

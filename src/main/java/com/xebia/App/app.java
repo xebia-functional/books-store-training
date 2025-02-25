@@ -15,6 +15,8 @@ import com.xebia.services.User.UserServiceDBImpl;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -62,7 +64,7 @@ public class app {
     } while (!exit);
   }
 
-  private static void manageBookstore() {
+  private static void manageBooks() {
     int opt = 0;
     boolean exit = false;
     do {
@@ -91,7 +93,12 @@ public class app {
           String title = sc.nextLine();
           System.out.println("Please introduce your book's author");
           String author = sc.nextLine();
-          Book remBook = new Book(UUID.randomUUID(), title, author, LocalDate.now(), true);
+          List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
+          List<Book> bookbyAuthor = List.of();
+          for (Book b : booksbyTitle) {
+            bookbyAuthor = bookSer.searchBookByAuthor(b.getAuthor());
+          }
+          Book remBook = bookbyAuthor.getFirst();
           bookSer.removeBook(remBook);
         }
         case 3 -> {
@@ -149,7 +156,8 @@ public class app {
         case 2 -> {
           System.out.println("Please introduce your username");
           String name = sc.nextLine();
-          User remUser = new User(UUID.randomUUID(), name);
+          Optional<User> usersbyName = userSer.searchUserByName(name);
+          User remUser = new User(usersbyName.get().getId(), name);
           userSer.removeUser(remUser);
         }
         case 3 -> {
@@ -170,5 +178,5 @@ public class app {
     } while (!exit);
   }
 
-  private static void manageBooks() {}
+  private static void manageBookstore() {}
 }

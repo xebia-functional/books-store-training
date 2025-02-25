@@ -76,6 +76,6 @@ public class UserServiceImp implements UserService {
 
   @Override
   public boolean containsUser(User user) {
-    return false;
+    return users.contains(user);
   }
 }

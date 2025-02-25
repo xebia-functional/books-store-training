@@ -31,8 +31,7 @@ public class TestUserServiceDBSuite {
   @BeforeAll
   static void beforeAll() {
     postgres.start();
-    FlywayMigration.migrate(postgres);
-    System.out.println("Postgres URL: " + postgres.getJdbcUrl());
+    FlywayMigration.migrate(postgres.getJdbcUrl(), postgres.getUsername(), postgres.getPassword());
   }
 
   @AfterAll

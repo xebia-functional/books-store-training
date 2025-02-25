@@ -14,12 +14,21 @@ public class Register {
     this.userId = userId;
     this.bookId = bookId;
     this.rentDate = LocalDate.now();
+    this.returnDate = Optional.empty();
   }
 
   public Register(UUID userId, UUID bookId, LocalDate rentDate) {
     this.userId = userId;
     this.bookId = bookId;
     this.rentDate = rentDate;
+    this.returnDate = Optional.empty();
+  }
+
+  public Register(UUID userId, UUID bookId, LocalDate rentDate, Optional<LocalDate> returnDate) {
+    this.userId = userId;
+    this.bookId = bookId;
+    this.rentDate = rentDate;
+    this.returnDate = returnDate;
   }
 
   public UUID getUserId() {
@@ -43,7 +52,7 @@ public class Register {
   }
 
   public boolean isActive() {
-    return returnDate == null;
+    return returnDate.isEmpty();
   }
 
   @Override

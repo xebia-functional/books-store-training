@@ -77,4 +77,20 @@ public interface RegisterService {
    * @return
    */
   List<Register> listRegistered();
+
+  /**
+   * Method that checks if a Register exists in the database
+   *
+   * @param register
+   * @return
+   */
+  public boolean containsRegister(Register register);
+
+  /**
+   * Method that checks if a Register exists in the database and is not closed
+   *
+   * @param register
+   * @return
+   */
+  public boolean containsOpenRegister(Register register);
 }

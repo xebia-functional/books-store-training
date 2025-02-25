@@ -38,7 +38,7 @@ public class BookServiceDBImpl implements BookService {
   public boolean addBook(Book book) {
     try {
       if (containsBook(book)) {
-        logger.warning("The book already exists in the list.");
+        logger.warning("The book already exists in the list");
         return false;
       } else {
         String insertQuery =

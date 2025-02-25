@@ -98,7 +98,7 @@ public class app {
           for (Book b : booksbyTitle) {
             booksAuthor = bookSer.searchBookByAuthor(b.getAuthor());
           }
-          Book remBook = booksAuthor.getLast();
+          Book remBook = booksAuthor.get(0);
           bookSer.removeBook(remBook);
         }
         case 3 -> {

@@ -94,11 +94,11 @@ public class app {
           System.out.println("Please introduce your book's author");
           String author = sc.nextLine();
           List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
-          List<Book> bookbyAuthor = List.of();
+          List<Book> booksAuthor = List.of();
           for (Book b : booksbyTitle) {
-            bookbyAuthor = bookSer.searchBookByAuthor(b.getAuthor());
+            booksAuthor = bookSer.searchBookByAuthor(b.getAuthor());
           }
-          Book remBook = bookbyAuthor.getFirst();
+          Book remBook = booksAuthor.getLast();
           bookSer.removeBook(remBook);
         }
         case 3 -> {

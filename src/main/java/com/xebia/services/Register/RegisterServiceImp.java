@@ -105,4 +105,14 @@ public class RegisterServiceImp implements RegisterService {
     }
     return registers;
   }
+
+  @Override
+  public boolean containsRegister(Register register) {
+    return registers.contains(register);
+  }
+
+  @Override
+  public boolean containsOpenRegister(Register register) {
+    return (registers.contains(register) && register.isActive());
+  }
 }

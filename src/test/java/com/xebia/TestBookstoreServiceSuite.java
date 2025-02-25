@@ -95,7 +95,7 @@ public class TestBookstoreServiceSuite {
   @Test
   public void returnBookShouldWork() {
     // Given
-    Book sampleBook = new Book("TittleSample", "AuthorSample");
+    Book sampleBook = new Book("TitleSample", "AuthorSample");
     User sampleUser = new User("NameSample");
     bookSer.addBook(sampleBook);
     userSer.addUser(sampleUser);

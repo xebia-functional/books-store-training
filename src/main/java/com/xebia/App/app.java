@@ -156,8 +156,8 @@ public class app {
         case 2 -> {
           System.out.println("Please introduce your username");
           String name = sc.nextLine();
-          Optional<User> usersbyName = userSer.searchUserByName(name);
-          User remUser = new User(usersbyName.get().getId(), name);
+          Optional<User> userbyName = userSer.searchUserByName(name);
+          User remUser = new User(userbyName.get().getId(), name);
           userSer.removeUser(remUser);
         }
         case 3 -> {

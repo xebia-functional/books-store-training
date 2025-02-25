@@ -15,6 +15,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation(libs.flyway)
     implementation(libs.postgresql)
+    testImplementation(libs.testcontatiners)
 }
 
 tasks.test {

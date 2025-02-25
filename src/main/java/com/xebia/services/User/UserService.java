@@ -42,4 +42,12 @@ public interface UserService {
    * @return List<User>
    */
   List<User> listUsers();
+
+  /**
+   * This method checks if a user exists
+   *
+   * @param user
+   * @return
+   */
+  public boolean containsUser(User user);
 }

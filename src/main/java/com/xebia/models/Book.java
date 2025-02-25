@@ -12,11 +12,20 @@ public class Book {
   private LocalDate date;
   private boolean available;
 
+  public Book(String title, String author, UUID id, LocalDate date, boolean available) {
+    this.title = title;
+    this.author = author;
+    this.id = id;
+    this.date = date;
+    this.available = available;
+  }
+
   public Book(String title, String author) {
     this.title = title;
     this.author = author;
     this.id = UUID.randomUUID();
     this.available = true;
+    this.date = LocalDate.now();
   }
 
   public String getTitle() {

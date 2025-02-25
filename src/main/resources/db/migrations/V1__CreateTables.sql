@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Register(
     book_id UUID,
     rentDate DATE NOT NULL,
     returnDate DATE,
-    PRIMARY KEY (users_id, book_id),
+    PRIMARY KEY (users_id, book_id, rentDate),
     FOREIGN KEY (users_id) REFERENCES Users(id),
     FOREIGN KEY (book_id) REFERENCES Book(id)
 );

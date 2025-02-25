@@ -50,7 +50,7 @@ public class TestBookServiceDBSuite {
             postgres.getJdbcUrl(), postgres.getUsername(), postgres.getPassword());
     logger = Logger.getLogger(TestUserServiceDBSuite.class.getName());
     bookService = new BookServiceDBImpl(logger, connection);
-    connection.prepareStatement("TRUNCATE TABLE Users CASCADE").execute();
+    connection.prepareStatement("TRUNCATE TABLE Book CASCADE").execute();
   }
 
   @Test

@@ -37,6 +37,7 @@ public class BookstoreServiceImp implements BookstoreService {
         return false;
       } else {
         if (searchedBook.get().isAvailable()) {
+          Register register = new Register(user.getId(), book.getId());
           if (regSer.addRegister(user.getId(), book.getId())) {
             bookSer.updateAvailability(book.getId(), false);
             return true;

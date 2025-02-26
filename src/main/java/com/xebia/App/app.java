@@ -178,5 +178,63 @@ public class app {
     } while (!exit);
   }
 
-  private static void manageBookstore() {}
+  private static void manageBookstore() {
+    boolean exit = false;
+    do {
+      System.out.println("*****MENU*****");
+      System.out.println("1. Request book");
+      System.out.println("2. Return book");
+      System.out.println("3. List available books");
+      System.out.println("4. List borrowed books");
+      System.out.println("5. Exit");
+
+      int answr = Integer.parseInt(sc.nextLine());
+
+      switch (answr) {
+        case 1 -> {
+          System.out.println("Introduce your username:");
+          String name = sc.nextLine();
+
+          User user = userSer.searchUserByName(name).get();
+
+          System.out.println("Introduce book title:");
+          String title = sc.nextLine();
+          System.out.println("Introduce book author:");
+          String author = sc.nextLine();
+
+          List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
+          List<Book> bookbyAuthor = List.of();
+          for (Book b : booksbyTitle) {
+            bookbyAuthor = bookSer.searchBookByAuthor(b.getAuthor());
+          }
+          Book book = bookbyAuthor.get(0);
+
+          bsSer.requestBook(book, user);
+        }
+        case 2 -> {
+          System.out.println("Introduce your username:");
+          String name = sc.nextLine();
+
+          User user = userSer.searchUserByName(name).get();
+
+          System.out.println("Introduce book title:");
+          String title = sc.nextLine();
+          System.out.println("Introduce book author:");
+          String author = sc.nextLine();
+
+          List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
+          List<Book> bookbyAuthor = List.of();
+          for (Book b : booksbyTitle) {
+            bookbyAuthor = bookSer.searchBookByAuthor(b.getAuthor());
+          }
+          Book book = bookbyAuthor.get(0);
+
+          bsSer.returnBook(book, user);
+        }
+        case 3 -> bsSer.listAvailable();
+        case 4 -> bsSer.listBorrowed();
+        case 5 -> exit = true;
+      }
+    } while (!exit);
+  }
 }

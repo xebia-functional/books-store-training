@@ -46,27 +46,45 @@ Service:
 
 ## Run
 
+### Docker
+
+Creation of a file named [docker-compose.yml](docker-compose.yml) for the database.
+
+### Flyway
+
+Integration of Flyway for the migrations. The migrations are stored on:
+- [src/main/resources/db/migrations](src/main/resources/db/migrations).
+
+
 ## Libraries
 Libraries are published in Maven Central:
-- The only library used so far is JUnit
+- JUnit for memory tests
+- Flyway for migrations
+- postgres for the database
+- Testcontainers for database test
 
 You may need to add that repository explicitly in your build, if you haven't done it before.
 
-repositories { mavenCentral() }
 
+repositories { mavenCentral() }
 
 Then add the libraries in the usual way.
 
-// In Gradle Kotlin 
-dependencies {
-  testImplementation(platform(libs.junit.jupiter.bom))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
+- [gradle/libs.versions.toml](gradle/libs.versions.toml).
+
+Then add the respective dependencies
+
+- [build.gradle.kts](build.gradle.kts).
 
 ### Local Development
 
 To build and test the project locally, you can use the following commands:
 
-./gradlew build
-./gradlew test
+- ./gradlew build
+- ./gradlew test
+
+To properly execute the app you must use the following command:
+
+- docker compse up
+- ./gradlew run
 

@@ -22,7 +22,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class app {
+public class App {
 
   public static final String URL = "jdbc:postgresql://localhost:5432/bookstore_db";
   public static final String USER = "xebia_user";
@@ -36,7 +36,7 @@ public class app {
   public static Scanner sc = new Scanner(System.in);
 
   public static void main(String[] args) throws SQLException {
-    Logger logger = Logger.getLogger(app.class.getName());
+    Logger logger = Logger.getLogger(App.class.getName());
     Connection connection = DatabaseManager.getConnection(URL, USER, PASSWORD);
     FlywayMigration.migrate(URL, USER, PASSWORD);
 

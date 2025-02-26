@@ -58,7 +58,7 @@ public class RegisterServiceDBImpl implements RegisterService {
   public boolean addRegister(UUID userID, UUID bookID, LocalDate rentDate) {
     Register newRegister = new Register(userID, bookID, rentDate);
     try {
-      if (containsRegister(newRegister)) {
+      if (containsOpenRegister(newRegister)) {
         logger.warning("The register already exists in the database.");
         return false;
       } else {
@@ -68,8 +68,9 @@ public class RegisterServiceDBImpl implements RegisterService {
         stmt.setObject(2, newRegister.getBookId());
         stmt.setObject(3, newRegister.getRentDate());
         stmt.executeUpdate();
+        return true;
       }
-      return true;
+
     } catch (SQLException e) {
       logger.severe("An error occurred while adding the register to the database.");
       e.printStackTrace();
@@ -81,7 +82,7 @@ public class RegisterServiceDBImpl implements RegisterService {
   public boolean addRegister(UUID userID, UUID bookID) {
     Register newRegister = new Register(userID, bookID);
     try {
-      if (containsRegister(newRegister)) {
+      if (containsOpenRegister(newRegister)) {
         logger.warning("The register already exists in the database.");
         return false;
       } else {
@@ -91,8 +92,9 @@ public class RegisterServiceDBImpl implements RegisterService {
         stmt.setObject(2, newRegister.getBookId());
         stmt.setObject(3, LocalDate.now());
         stmt.executeUpdate();
+        return true;
       }
-      return true;
+
     } catch (SQLException e) {
       logger.severe("An error occurred while adding the register to the database.");
       e.printStackTrace();

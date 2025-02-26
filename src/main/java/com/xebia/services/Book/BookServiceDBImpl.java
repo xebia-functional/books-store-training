@@ -29,7 +29,10 @@ public class BookServiceDBImpl implements BookService {
       selectStmt.setString(1, book.getTitle());
       selectStmt.setString(2, book.getAuthor());
 
-      return selectStmt.executeQuery().next();
+      ResultSet resultSet = selectStmt.executeQuery();
+
+      return resultSet.next();
+
     } catch (SQLException e) {
       logger.severe("An error occurred while checking if the book exists in the database.");
       e.printStackTrace();
@@ -66,12 +69,17 @@ public class BookServiceDBImpl implements BookService {
   public boolean removeBook(Book book) {
     try {
       if (!containsBook(book)) {
+
         logger.warning("The book does not exist in the list.");
         return false;
+
       } else {
-        String deleteQuery = "DELETE FROM Book WHERE id = ?";
+
+        String deleteQuery = "DELETE FROM Book WHERE author = ? AND title = ?";
         PreparedStatement stmt = connection.prepareStatement(deleteQuery);
-        stmt.setObject(1, book.getId());
+
+        stmt.setString(1, book.getAuthor());
+        stmt.setString(2, book.getTitle());
         stmt.executeUpdate();
       }
       return true;
@@ -173,7 +181,8 @@ public class BookServiceDBImpl implements BookService {
   public List<Book> listBooks() {
     List<Book> books = new ArrayList<>();
     try {
-      String selectQuery = "SELECT id, title, author, date, available FROM Book";
+      String selectQuery =
+          "SELECT id, title, author, date, available FROM Book WHERE available = true";
       PreparedStatement stmt = connection.prepareStatement(selectQuery);
 
       ResultSet resultSet = stmt.executeQuery();

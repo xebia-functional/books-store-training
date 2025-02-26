@@ -20,6 +20,7 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class app {
 
@@ -93,31 +94,72 @@ public class app {
           String title = sc.nextLine();
           System.out.println("Please introduce your book's author");
           String author = sc.nextLine();
+
           List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
-          List<Book> booksAuthor = List.of();
-          for (Book b : booksbyTitle) {
-            booksAuthor = bookSer.searchBookByAuthor(b.getAuthor());
+
+          List<Book> booksByAuthor =
+              booksbyTitle.stream()
+                  .filter(b -> b.getAuthor().equals(author)) //
+                  .collect(Collectors.toList());
+
+          if (!booksByAuthor.isEmpty()) {
+            Book remBook = booksByAuthor.get(0);
+            boolean result = bookSer.removeBook(remBook);
+            if (result) {
+              System.out.println("Book removed successfully.");
+            } else {
+              System.out.println("An error occurred while trying to remove the book.");
+            }
+          } else {
+            System.out.println("No books found with the given title and author.");
           }
-          Book remBook = booksAuthor.get(0);
-          bookSer.removeBook(remBook);
         }
         case 3 -> {
           System.out.println("Please introduce your book's title");
           String title = sc.nextLine();
-          bookSer.searchBookByTitle(title);
+          List<Book> books = bookSer.searchBookByTitle(title);
+
+          if (books.isEmpty()) {
+            System.out.println("No books found with the given title .");
+          } else {
+            for (Book b : books) {
+              System.out.println(b);
+            }
+          }
         }
         case 4 -> {
           System.out.println("Please introduce your book's author");
           String author = sc.nextLine();
-          bookSer.searchBookByAuthor(author);
+
+          List<Book> books = bookSer.searchBookByAuthor(author);
+
+          if (books.isEmpty()) {
+            System.out.println("No books found with the given author .");
+          } else {
+            for (Book b : books) {
+              System.out.println(b);
+            }
+          }
         }
         case 5 -> {
           System.out.println("Please introduce your book's ID");
           String input = sc.nextLine();
           UUID ID = UUID.fromString(input);
-          bookSer.searchBookById(ID);
+
+          Optional<Book> book = bookSer.searchBookById(ID);
+
+          if (book.isEmpty()) {
+            System.out.println("The book does not exists in the database");
+          } else {
+            System.out.println(book.get());
+          }
         }
-        case 6 -> bookSer.listBooks();
+        case 6 -> {
+          List<Book> books = bookSer.listBooks();
+          for (Book b : books) {
+            System.out.println(b);
+          }
+        }
         case 7 -> {
           System.out.println("Please introduce your book's ID");
           String input = sc.nextLine();
@@ -157,21 +199,50 @@ public class app {
           System.out.println("Please introduce your username");
           String name = sc.nextLine();
           Optional<User> userbyName = userSer.searchUserByName(name);
-          User remUser = new User(userbyName.get().getId(), name);
-          userSer.removeUser(remUser);
+
+          if (userbyName.isPresent()) {
+            User remUser = new User(userbyName.get().getId(), name);
+            boolean result = userSer.removeUser(remUser);
+            if (result) {
+              System.out.println("User removed successfully.");
+            } else {
+              System.out.println("An error occurred while trying to remove the user.");
+            }
+          } else {
+            System.out.println("No user found with the given username.");
+          }
         }
         case 3 -> {
           System.out.println("Please introduce your user's name");
           String name = sc.nextLine();
-          userSer.searchUserByName(name);
+
+          Optional<User> user = userSer.searchUserByName(name);
+
+          if (user.isEmpty()) {
+            System.out.println("The user does not exists in the database");
+          } else {
+            System.out.println(user.get());
+          }
         }
         case 4 -> {
           System.out.println("Please introduce your user's ID");
           String input = sc.nextLine();
           UUID ID = UUID.fromString(input);
-          userSer.searchUserByID(ID);
+
+          Optional<User> user = userSer.searchUserByID(ID);
+
+          if (user.isEmpty()) {
+            System.out.println("The user does not exists in the database");
+          } else {
+            System.out.println(user.get());
+          }
         }
-        case 5 -> userSer.listUsers();
+        case 5 -> {
+          List<User> users = userSer.listUsers();
+          for (User u : users) {
+            System.out.println(u);
+          }
+        }
         case 6 -> exit = true;
         default -> System.out.println("Please select one of the proposed options");
       }
@@ -215,7 +286,12 @@ public class app {
           System.out.println("Introduce your username:");
           String name = sc.nextLine();
 
-          User user = userSer.searchUserByName(name).get();
+          Optional<User> userOptional = userSer.searchUserByName(name);
+          if (userOptional.isEmpty()) {
+            System.out.println("User not found.");
+            break;
+          }
+          User user = userOptional.get();
 
           System.out.println("Introduce book title:");
           String title = sc.nextLine();
@@ -223,16 +299,38 @@ public class app {
           String author = sc.nextLine();
 
           List<Book> booksbyTitle = bookSer.searchBookByTitle(title);
-          List<Book> bookbyAuthor = List.of();
-          for (Book b : booksbyTitle) {
-            bookbyAuthor = bookSer.searchBookByAuthor(b.getAuthor());
-          }
-          Book book = bookbyAuthor.get(0);
 
-          bsSer.returnBook(book, user);
+          List<Book> booksByAuthor =
+              booksbyTitle.stream()
+                  .filter(b -> b.getAuthor().equals(author))
+                  .collect(Collectors.toList());
+
+          if (booksByAuthor.isEmpty()) {
+            System.out.println("No books found with the given title and author.");
+            break; // Salimos si no hay libros que coincidan
+          }
+
+          Book book = booksByAuthor.get(0);
+
+          boolean success = bsSer.returnBook(book, user);
+          if (success) {
+            System.out.println("Book returned successfully.");
+          } else {
+            System.out.println("An error occurred while returning the book.");
+          }
         }
-        case 3 -> bsSer.listAvailable();
-        case 4 -> bsSer.listBorrowed();
+        case 3 -> {
+          List<Book> books = bsSer.listAvailable();
+          for (Book b : books) {
+            System.out.println(b);
+          }
+        }
+        case 4 -> {
+          List<Book> books = bsSer.listBorrowed();
+          for (Book b : books) {
+            System.out.println(b);
+          }
+        }
         case 5 -> exit = true;
       }
     } while (!exit);

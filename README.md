@@ -52,23 +52,7 @@ Creation of a file named [docker-compose.yml](docker-compose.yml) for the databa
 
 ### Flyway
 
-Creation of flyway (src/main/java/com/xebia/migrations) for the migrations
-
-```
-public class FlywayMigration {
-  public static void main(String[] args) {}
-
-  public static void migrate(String url, String username, String password) {
-    Flyway flyway =
-        Flyway.configure()
-            .dataSource(url, username, password)
-            .locations("classpath:db/migrations")
-            .load();
-
-    flyway.migrate();
-  }
-}
-```
+Integration of Flyway for the migrations. The migrations are stored here [src/main/resources/db/migrations](src/main/resources/db/migrations).
 
 
 ## Libraries

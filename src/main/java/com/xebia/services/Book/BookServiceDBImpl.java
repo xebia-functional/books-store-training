@@ -23,9 +23,12 @@ public class BookServiceDBImpl implements BookService {
 
   public boolean containsBook(Book book) {
     try {
-      String selectQuery = "SELECT * FROM Book WHERE id = ?";
+      String selectQuery = "SELECT * FROM Book WHERE title = ? AND author = ?";
       PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
-      selectStmt.setObject(1, book.getId());
+
+      selectStmt.setString(1, book.getTitle());
+      selectStmt.setString(2, book.getAuthor());
+
       return selectStmt.executeQuery().next();
     } catch (SQLException e) {
       logger.severe("An error occurred while checking if the book exists in the database.");

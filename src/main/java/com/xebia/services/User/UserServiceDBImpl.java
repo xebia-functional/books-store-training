@@ -23,9 +23,11 @@ public class UserServiceDBImpl implements UserService {
 
   public boolean containsUser(User user) {
     try {
-      String selectQuery = "SELECT * FROM Users WHERE id = ?";
+      String selectQuery = "SELECT * FROM Users WHERE name = ?";
       PreparedStatement selectStmt = connection.prepareStatement(selectQuery);
-      selectStmt.setObject(1, user.getId());
+
+      selectStmt.setString(1, user.getName());
+
       return selectStmt.executeQuery().next();
     } catch (SQLException e) {
       logger.severe("An error occurred while checking if the user exists in the database.");

@@ -1,10 +1,16 @@
 plugins {
     id("java")
     alias(libs.plugins.spotless)
+    application
 }
 
 group = "com.xebia"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass = "com.xebia.App.App"
+}
+
 
 repositories {
     mavenCentral()
@@ -28,3 +34,6 @@ spotless {
     }
 }
 
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}

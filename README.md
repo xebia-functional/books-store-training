@@ -52,7 +52,8 @@ Creation of a file named [docker-compose.yml](docker-compose.yml) for the databa
 
 ### Flyway
 
-Integration of Flyway for the migrations. The migrations are stored here [src/main/resources/db/migrations](src/main/resources/db/migrations).
+Integration of Flyway for the migrations. The migrations are stored on:
+- [src/main/resources/db/migrations](src/main/resources/db/migrations).
 
 
 ## Libraries
@@ -64,31 +65,16 @@ Libraries are published in Maven Central:
 
 You may need to add that repository explicitly in your build, if you haven't done it before.
 
-```
+
 repositories { mavenCentral() }
-```
+
 Then add the libraries in the usual way.
 
-```
-
-[libraries]
-junit-jupiter-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
-flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
-postgresql= {module = "org.postgresql:postgresql", version.ref = "postgre"}
-testcontatiners = {module = "org.testcontainers:postgresql", version.ref = "testcontainers"}
-
-```
+- [gradle/libs.versions.toml](gradle/libs.versions.toml).
 
 Then add the respective dependencies
-```
-dependencies {
-    testImplementation(platform(libs.junit.jupiter.bom))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation(libs.flyway)
-    implementation(libs.postgresql)
-    testImplementation(libs.testcontatiners)
-}
-```
+
+- [build.gradle.kts](build.gradle.kts).
 
 ### Local Development
 
@@ -100,4 +86,5 @@ To build and test the project locally, you can use the following commands:
 To properly execute the app you must use the following command:
 
 - docker compse up
+- ./gradlew run
 

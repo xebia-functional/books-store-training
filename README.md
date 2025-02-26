@@ -48,26 +48,7 @@ Service:
 
 ### Docker
 
-Creation of a file named "docker-compose.yml" at root level with the following code:
-
-```
-version: '3.8'
-
-services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-xebia_user}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-xebia_pw}
-      POSTGRES_DB: ${POSTGRES_DB:-bookstore_db}
-    ports:
-      - "5432:5432"
-
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER:-xebia_user}" ]
-      interval: 10s
-      start_period: 5s
-```
+Creation of a file named [docker-compose.yml](docker-compose.yml) for the database.
 
 ### Flyway
 
